@@ -81,6 +81,9 @@
   grid-area: description;
   margin: 0;
   padding: 7px 0 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .profile__image {
@@ -131,6 +134,9 @@
 
 .card__text {
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .card__like-button {
@@ -139,6 +145,12 @@
   width: 21px;
   margin-left: auto;
   border: 0;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 @media screen and (max-width: 480px) {
