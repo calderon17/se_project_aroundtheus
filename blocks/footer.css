@@ -15,3 +15,22 @@
   font-weight: 400;
   line-height: normal;
 }
+
+@media screen and (max-width: 580px) {
+  .footer {
+    margin: auto;
+    justify-content: center;
+  }
+
+  .footer__copyright {
+    padding: 48px 0 36px;
+    width: 282px;
+    height: 14px;
+    color: #545454;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}

@@ -16,3 +16,17 @@
   flex-direction: column;
   padding: 0 15px;
 }
+
+@media screen and (max-width: 880px) {
+  .page__section {
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .page__content {
+    padding: 0;
+  }
+}

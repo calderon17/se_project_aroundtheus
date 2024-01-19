@@ -50,3 +50,13 @@
   margin-left: auto;
   border: 0;
 }
+
+@media screen and (max-width: 580px) {
+  .card__list {
+    padding: 0;
+  }
+
+  .card__description {
+    padding: 25px 20px;
+  }
+}
