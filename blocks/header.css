@@ -1,10 +1,11 @@
 .header {
   margin-top: 45px;
-  border-bottom: 2px solid #545454;
+  border-bottom: 1px solid rgb(84, 84, 84, 0.7);
 }
 
 .header__image {
   margin-bottom: 41px;
+  opacity: 1;
 }
 
 @media screen and (max-width: 880px) {
