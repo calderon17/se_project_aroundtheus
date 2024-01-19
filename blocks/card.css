@@ -20,6 +20,7 @@
   align-items: center;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  font-family: Inter, Arial, Helvetica, sans-serif;
 }
 
 .card__text {
@@ -33,9 +34,14 @@
 .card__like-button {
   background: transparent url(../images/like-active.svg) center no-repeat;
   height: 18px;
-  width: 21px;
+  min-width: 21px;
   margin-left: auto;
   border: 0;
+}
+
+.card__like-button:hover {
+  opacity: 0.5;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 580px) {
