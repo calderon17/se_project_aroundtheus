@@ -7,12 +7,12 @@
   z-index: 999;
   background-color: rgb(0, 0, 0, 0.5);
   display: flex;
-  /* display: none; */
+  display: none;
 }
 
-/* .modal__opened {
+.modal__opened {
   display: flex;
-} */
+}
 
 .modal__container {
   background-color: #fff;
