@@ -23,7 +23,7 @@
   font-family: Inter, Arial, Helvetica, sans-serif;
 }
 
-.card__text {
+.card__title {
   margin: 0;
   text-overflow: ellipsis;
   white-space: nowrap;
