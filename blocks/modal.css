@@ -6,11 +6,10 @@
   bottom: 0;
   z-index: 999;
   background-color: rgb(0, 0, 0, 0.5);
-  display: flex;
   display: none;
 }
 
-.modal__opened {
+.modal--opened {
   display: flex;
 }
 
@@ -31,16 +30,19 @@
   position: absolute;
   left: calc(100% + 5px);
   bottom: calc(100% + 5px);
-  background-image: url(../images/Close\ Icon.svg);
+  background-image: url(../images/Close-Icon.svg);
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+.modal__close:hover {
+  opacity: 60%;
   cursor: pointer;
 }
 
 .modal__heading {
   margin: 0;
   width: 330px;
-  min-height: 23px;
   flex-shrink: 0;
   color: #000;
   font-family: Inter, Arial, Helvetica, sans-serif;
@@ -59,31 +61,34 @@
     "button";
 }
 
-.modal__title {
+.modal__input-title {
   font-size: 14px;
   width: 358px;
-  height: 23px;
-  padding: 54px 0 13px;
+  height: 27px;
+  margin: 54px 0 13px;
   border-bottom: 1px solid rgb(0, 0, 0, 0.2);
   border-top: none;
   border-left: none;
   border-right: none;
-}
-
-.modal__description {
-  font-size: 14px;
-  width: 358px;
-  flex-shrink: 0;
-  padding: 30px 0 13px;
-  border-bottom: 1px solid rgb(0, 0, 0, 0.2);
-  border-top: none;
-  border-left: none;
-  border-right: none;
-}
-
-input::placeholder {
   color: #000;
-  font-family: Inter;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.modal__input-description {
+  font-size: 14px;
+  width: 358px;
+  height: 27px;
+  flex-shrink: 0;
+  margin: 30px 0 13px;
+  border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  color: #000;
+  font-family: Inter, Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -96,10 +101,17 @@ input::placeholder {
   background-color: #000;
   color: #fff;
   text-align: center;
-  font-family: Inter;
+  font-family: Inter, Arial, Helvetica, sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   margin: 48px 0 0;
+  border-radius: 2px;
+  border: none;
+}
+
+.modal__button:hover {
+  opacity: 80%;
+  cursor: pointer;
 }
