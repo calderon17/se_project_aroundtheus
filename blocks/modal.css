@@ -65,7 +65,7 @@
   font-size: 14px;
   width: 358px;
   height: 27px;
-  margin: 54px 0 13px;
+  margin: 54px 0 0;
   border-bottom: 1px solid rgb(0, 0, 0, 0.2);
   border-top: none;
   border-left: none;
@@ -82,7 +82,7 @@
   width: 358px;
   height: 27px;
   flex-shrink: 0;
-  margin: 30px 0 13px;
+  margin: 30px 0 0;
   border-bottom: 1px solid rgb(0, 0, 0, 0.2);
   border-top: none;
   border-left: none;
@@ -114,4 +114,40 @@
 .modal__button:hover {
   opacity: 80%;
   cursor: pointer;
+}
+
+@media screen and (max-width: 580px) {
+  .modal__container {
+    max-width: 282px;
+    padding: 22px;
+  }
+  .modal__close {
+    left: calc(100% - 35px);
+    bottom: calc(100% + 14px);
+    width: 26px;
+    height: 26px;
+  }
+  .modal__heading {
+    width: 238px;
+    font-size: 18px;
+    line-height: 21.78px;
+  }
+
+  .modal__input-title {
+    font-size: 14px;
+    width: 238px;
+    height: 27px;
+    margin: 75px 0 0;
+  }
+
+  .modal__input-description {
+    font-size: 14px;
+    width: 238px;
+    height: 27px;
+  }
+
+  .modal__button {
+    width: 238px;
+    height: 50.152px;
+  }
 }
