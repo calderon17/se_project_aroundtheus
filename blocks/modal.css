@@ -61,7 +61,7 @@
     "button";
 }
 
-.modal__input_title {
+.modal__input {
   font-size: 14px;
   width: 358px;
   height: 27px;
@@ -78,20 +78,7 @@
 }
 
 .modal__input_description {
-  font-size: 14px;
-  width: 358px;
-  height: 27px;
-  flex-shrink: 0;
   margin: 30px 0 0;
-  border-bottom: 1px solid rgb(0, 0, 0, 0.2);
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  color: #000;
-  font-family: Inter, Arial, Helvetica, sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16.94px;
 }
 
 .modal__button {
