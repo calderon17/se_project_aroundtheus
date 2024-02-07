@@ -49,7 +49,7 @@
   font-size: 24px;
   font-style: normal;
   font-weight: 900;
-  line-height: normal;
+  line-height: 29.05px;
 }
 
 .modal__form {
@@ -61,7 +61,7 @@
     "button";
 }
 
-.modal__input-title {
+.modal__input_title {
   font-size: 14px;
   width: 358px;
   height: 27px;
@@ -74,10 +74,10 @@
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
+  line-height: 16.94px;
 }
 
-.modal__input-description {
+.modal__input_description {
   font-size: 14px;
   width: 358px;
   height: 27px;
@@ -91,7 +91,7 @@
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
+  line-height: 16.94px;
 }
 
 .modal__button {
@@ -105,7 +105,7 @@
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
+  line-height: 21.78px;
   margin: 48px 0 0;
   border-radius: 2px;
   border: none;
@@ -133,14 +133,14 @@
     line-height: 21.78px;
   }
 
-  .modal__input-title {
+  .modal__input_title {
     font-size: 14px;
     width: 238px;
     height: 27px;
     margin: 75px 0 0;
   }
 
-  .modal__input-description {
+  .modal__input_description {
     font-size: 14px;
     width: 238px;
     height: 27px;
@@ -149,5 +149,9 @@
   .modal__button {
     width: 238px;
     height: 50.152px;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: center;
   }
 }
