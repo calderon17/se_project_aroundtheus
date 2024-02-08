@@ -77,7 +77,7 @@
   line-height: 16.94px;
 }
 
-.modal__input_description {
+.modal__input:last-child {
   margin: 30px 0 0;
 }
 
@@ -120,17 +120,11 @@
     line-height: 21.78px;
   }
 
-  .modal__input_title {
+  .modal__input {
     font-size: 14px;
     width: 238px;
     height: 27px;
     margin: 75px 0 0;
-  }
-
-  .modal__input_description {
-    font-size: 14px;
-    width: 238px;
-    height: 27px;
   }
 
   .modal__button {
