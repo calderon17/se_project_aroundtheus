@@ -126,4 +126,6 @@ addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
 addCardModalCloseButton.addEventListener("click", closePopup);
 
-initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+// Below is unused code that repeating the initial cards, will get back to resolve which is better
+
+// initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
