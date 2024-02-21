@@ -53,6 +53,11 @@ const cardImageEL = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
+const previewImageModal = document.querySelector("#preview-image-modal");
+const modalImageElement = previewImageModal.querySelector(".modal__img");
+const ImageModalcaption = previewImageModal.querySelector(".modal__caption");
+const PreImgModalCloseButton = previewImageModal.querySelector("#modal-close");
+
 //----------------------------------------------------------------------------------------
 //                                     Functions
 //----------------------------------------------------------------------------------------
@@ -60,6 +65,7 @@ const cardTemplate =
 function closePopup() {
   profileEditModal.classList.remove("modal--opened");
   addCardModal.classList.remove("modal--opened");
+  previewImageModal.classList.remove("modal--opened");
 }
 
 function removeCard() {}
@@ -71,7 +77,6 @@ function getCardElement(cardData) {
   const likeButton = cardElement.querySelector(".card__like-button");
   const removeButton = cardElement.querySelector(".card__remove-button");
   //---------------------
-  const previewImageModal = document.querySelector("#preview-image-modal");
 
   // add click listener to cardImage element
   // use openModal function with previewImageModal
@@ -82,6 +87,12 @@ function getCardElement(cardData) {
 
   removeButton.addEventListener("click", () => {
     cardElement.remove();
+  });
+
+  cardImageEL.addEventListener("click", () => {
+    modalImageElement.src = cardData.link;
+    ImageModalcaption.textContent = cardData.name;
+    previewImageModal.classList.add("modal--opened");
   });
 
   cardTitleEL.textContent = cardData.name;
@@ -143,9 +154,7 @@ addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
 addCardModalCloseButton.addEventListener("click", closePopup);
 
-// Remove a card
-
-removeCardButton.addEventListener("click", removeCard);
+PreImgModalCloseButton.addEventListener("click", closePopup);
 
 // Below is unused code that repeating the initial cards, will get back to resolve which is better
 

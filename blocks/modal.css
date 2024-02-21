@@ -103,6 +103,27 @@
   cursor: pointer;
 }
 
+.modal__container_type_preimg {
+  display: flex;
+  background: none;
+  padding: 0;
+  max-height: 75vh;
+  max-width: 75vh;
+  width: auto;
+  height: auto;
+}
+
+.modal__img {
+  object-fit: cover;
+  max-width: 100%;
+}
+
+.modal__caption {
+  position: absolute;
+  top: calc(100% + 10px);
+  color: #fff;
+}
+
 @media screen and (max-width: 580px) {
   .modal__container {
     max-width: 282px;
