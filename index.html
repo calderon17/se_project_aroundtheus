@@ -90,11 +90,22 @@
           </form>
         </div>
       </div>
+      <!-- Image preview modal -->
+
+      <div class="modal" id="preview-image-modal">
+        <div class="modal__container">
+          <button type="button" class="modal__close" id="modal-close"></button>
+          <img src="" alt="" />
+          <p class="image__caption"></p>
+        </div>
+      </div>
     </div>
 
+    <!-- card template -->
     <template class="" id="card-template">
       <li class="card">
         <img class="card__image" src="" alt="" />
+        <button class="card__remove-button"></button>
         <div class="card__description">
           <h2 class="card__title"></h2>
           <button class="card__like-button" type="button"></button>

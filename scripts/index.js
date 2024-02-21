@@ -62,10 +62,27 @@ function closePopup() {
   addCardModal.classList.remove("modal--opened");
 }
 
+function removeCard() {}
+
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEL = cardElement.querySelector(".card__image");
   const cardTitleEL = cardElement.querySelector(".card__title");
+  const likeButton = cardElement.querySelector(".card__like-button");
+  const removeButton = cardElement.querySelector(".card__remove-button");
+  //---------------------
+  const previewImageModal = document.querySelector("#preview-image-modal");
+
+  // add click listener to cardImage element
+  // use openModal function with previewImageModal
+
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
+
+  removeButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
 
   cardTitleEL.textContent = cardData.name;
   cardImageEL.src = cardData.link;
@@ -125,6 +142,10 @@ addNewCardButton.addEventListener("click", () => {
 addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
 addCardModalCloseButton.addEventListener("click", closePopup);
+
+// Remove a card
+
+removeCardButton.addEventListener("click", removeCard);
 
 // Below is unused code that repeating the initial cards, will get back to resolve which is better
 
