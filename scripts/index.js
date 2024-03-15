@@ -103,6 +103,23 @@ function renderCard(cardData) {
   cardListEl.prepend(cardElement);
 }
 
+// Close on overlay
+
+function overlayClose(modalElement) {
+  modalElement.addEventListener("mousedown", (evt) => {
+    if (
+      evt.target.classList.contains("modal") ||
+      evt.target.classList.contains("modal__close")
+    ) {
+      closePopup(modalElement);
+    }
+  });
+}
+
+overlayClose(profileEditModal);
+overlayClose(addCardModal);
+overlayClose(previewImageModal);
+
 //----------------------------------------------------------------------------------------
 //                                  Event Handlers
 //----------------------------------------------------------------------------------------
@@ -123,6 +140,11 @@ function handleAddCardFormSubmit(e) {
   cardTitleInput.value = "";
   cardUrlInput.value = "";
 }
+
+// const handleEscUp = (evt) => {
+//   evt.preventDefault;
+//   isEscEvent(evt, closePopup);
+// };
 
 //----------------------------------------------------------------------------------------
 //                                 Events listeners
@@ -156,7 +178,3 @@ addCardModalCloseButton.addEventListener("click", () =>
 preImgModalCloseButton.addEventListener("click", () =>
   closePopup(previewImageModal)
 );
-
-// Below is unused code that repeating the initial cards, will get back to resolve which is better
-
-// initialCards.forEach((cardData) => renderCard(cardData, cardListEl));

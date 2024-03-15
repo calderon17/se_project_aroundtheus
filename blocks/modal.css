@@ -135,6 +135,30 @@
   text-align: left;
 }
 
+.modal_error {
+  color: purple;
+}
+
+.modal__error_visible {
+  color: yellow;
+}
+
+.modal__input_type_error {
+  border-bottom: 1px solid red;
+  color: red;
+}
+
+.modal__close_disabled {
+  background-color: #fff;
+  color: #000;
+  opacity: 0.2;
+  border: grey;
+}
+
+.modal__error_visible {
+  color: red;
+}
+
 @media screen and (max-width: 580px) {
   .modal__container {
     max-width: 282px;
