@@ -5,7 +5,7 @@ function showInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   console.log(`#${inputEl.id}-error`);
   const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
   inputEl.classList.add(inputErrorClass);
-  errorMessageEl.textcontent = inputEl.validationMessages;
+  errorMessageEl.textContent = inputEl.validationMessage;
   errorMessageEl.classList.add(errorClass);
 }
 
@@ -13,7 +13,7 @@ function hideInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   console.log(`#${inputEl.id}-error`);
   const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
   inputEl.classList.remove(inputErrorClass);
-  errorMessageEl.textcontent = "";
+  errorMessageEl.textContent = "";
   errorMessageEl.classList.remove(errorClass);
 }
 

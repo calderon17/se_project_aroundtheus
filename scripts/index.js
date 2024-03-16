@@ -178,3 +178,7 @@ addCardModalCloseButton.addEventListener("click", () =>
 preImgModalCloseButton.addEventListener("click", () =>
   closePopup(previewImageModal)
 );
+
+// esc key
+
+document.addEventListener("keydown", handleEsc);

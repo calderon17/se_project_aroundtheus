@@ -134,13 +134,17 @@
   letter-spacing: 0em;
   text-align: left;
 }
+.modal__label {
+  display: flex;
+  position: relative;
+}
 
-.modal_error {
-  color: purple;
+.modal__error {
+  position: absolute;
 }
 
 .modal__error_visible {
-  color: yellow;
+  color: red;
 }
 
 .modal__input_type_error {
@@ -151,12 +155,7 @@
 .modal__close_disabled {
   background-color: #fff;
   color: #000;
-  opacity: 0.2;
-  border: grey;
-}
-
-.modal__error_visible {
-  color: red;
+  border: 1px solid grey;
 }
 
 @media screen and (max-width: 580px) {
