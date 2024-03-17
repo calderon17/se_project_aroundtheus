@@ -70,7 +70,7 @@
   font-size: 14px;
   width: 358px;
   height: 27px;
-  margin: 54px 0 0;
+  margin: 54px 0 20px;
   border-bottom: 1px solid rgb(0, 0, 0, 0.2);
   border-top: none;
   border-left: none;
@@ -83,7 +83,7 @@
 }
 
 .modal__input:last-of-type {
-  margin: 30px 0 0;
+  margin: 30px 0 20px;
 }
 
 .modal__button {
@@ -135,16 +135,21 @@
   text-align: left;
 }
 .modal__label {
-  display: flex;
   position: relative;
 }
 
 .modal__error {
-  position: absolute;
+  /* position: absolute;
+  top: 80px;
+  left: 35px; */
 }
 
 .modal__error_visible {
   color: red;
+  position: absolute;
+  top: 60px;
+  left: 0px;
+  padding: 8px 0 0;
 }
 
 .modal__input_type_error {
@@ -154,7 +159,7 @@
 
 .modal__close_disabled {
   background-color: #fff;
-  color: #000;
+  color: grey;
   border: 1px solid grey;
 }
 

@@ -141,11 +141,6 @@ function handleAddCardFormSubmit(e) {
   cardUrlInput.value = "";
 }
 
-// const handleEscUp = (evt) => {
-//   evt.preventDefault;
-//   isEscEvent(evt, closePopup);
-// };
-
 //----------------------------------------------------------------------------------------
 //                                 Events listeners
 //----------------------------------------------------------------------------------------
@@ -182,3 +177,10 @@ preImgModalCloseButton.addEventListener("click", () =>
 // esc key
 
 document.addEventListener("keydown", handleEsc);
+
+function handleEsc(evt) {
+  if (evt.key === "Escape") {
+    document.querySelector("modal_opened");
+    closePopup();
+  }
+}
