@@ -154,7 +154,7 @@
 
 .modal__input_type_error {
   border-bottom: 1px solid red;
-  color: red;
+  color: #000;
 }
 
 .modal__close_disabled {

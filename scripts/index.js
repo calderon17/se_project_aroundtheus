@@ -61,14 +61,30 @@ const preImgModalCloseButton = previewImageModal.querySelector("#modal-close");
 //----------------------------------------------------------------------------------------
 //                                     Functions
 //----------------------------------------------------------------------------------------
+/////////////////////////////
+function handleEsc(evt) {
+  if (evt.key === "Escape") {
+    document.querySelector(".modal_opened");
+    closePopup(handleEscUp);
+  }
+}
+
+const handleEscUp = (evt) => {
+  evt.preventDefault();
+  isEscEvent(evt, closePopup);
+};
 
 function closePopup(popup) {
   popup.classList.remove("modal_opened");
+  document.addEventListener("keydown", handleEscUp);
 }
 
 function openPopup(popup) {
   popup.classList.add("modal_opened");
+  document.removeEventListener("keydown", handleEscUp);
 }
+
+/////////////////////
 
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -173,14 +189,3 @@ addCardModalCloseButton.addEventListener("click", () =>
 preImgModalCloseButton.addEventListener("click", () =>
   closePopup(previewImageModal)
 );
-
-// esc key
-
-document.addEventListener("keydown", handleEsc);
-
-function handleEsc(evt) {
-  if (evt.key === "Escape") {
-    document.querySelector("modal_opened");
-    closePopup();
-  }
-}
