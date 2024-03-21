@@ -63,8 +63,8 @@ const preImgModalCloseButton = previewImageModal.querySelector("#modal-close");
 //----------------------------------------------------------------------------------------
 function handleEsc(evt) {
   if (evt.key === "Escape") {
-    const handleEscUp = document.querySelector(".modal_opened");
-    closePopup(handleEscUp);
+    const openedModal = document.querySelector(".modal_opened");
+    closePopup(openedModal);
   }
 }
 
@@ -113,7 +113,7 @@ function renderCard(cardData) {
 
 // Close on overlay
 
-function overlayClose(modalElement) {
+function addOverlayCloseListener(modalElement) {
   modalElement.addEventListener("mousedown", (evt) => {
     if (
       evt.target.classList.contains("modal") ||
@@ -124,9 +124,9 @@ function overlayClose(modalElement) {
   });
 }
 
-overlayClose(profileEditModal);
-overlayClose(addCardModal);
-overlayClose(previewImageModal);
+addOverlayCloseListener(profileEditModal);
+addOverlayCloseListener(addCardModal);
+addOverlayCloseListener(previewImageModal);
 
 //----------------------------------------------------------------------------------------
 //                                  Event Handlers
