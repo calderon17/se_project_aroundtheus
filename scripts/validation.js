@@ -27,15 +27,6 @@ function checkInputValidity(formEl, inputEl, options) {
 function hasInvalidInput(inputList) {
   return !inputList.every((inputEl) => inputEl.validity.valid);
 }
-
-//disableButton
-//submitButton.classList.add(inactiveButtonClass);
-// submitButton.disbled = true;
-
-// enableButton
-// submitButton.classList.remove(inactiveButtonClass);
-//   submitButton.disbled = false;
-
 function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
   if (hasInvalidInput(inputEls)) {
     submitButton.classList.add(inactiveButtonClass);
@@ -49,7 +40,9 @@ function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
 function setEventListeners(formEl, options) {
   const { inputSelector } = options;
   const inputEls = [...formEl.querySelectorAll(inputSelector)];
-  const submitButton = options.querySelector(".modal__button");
+  const submitButton = formEl.querySelector(".modal__button");
+  //const submitButton = options.querySelector(".modal__button");//
+  // i dont know if this what you meant by using the options object, but when i use it, validation does not work//
   inputEls.forEach((inputEl) => {
     inputEl.addEventListener("input", (e) => {
       checkInputValidity(formEl, inputEl, options);
