@@ -134,10 +134,6 @@
   position: relative;
 }
 
-.modal__error {
-  /* position: absolute; */
-}
-
 .modal__error_visible {
   color: red;
   position: absolute;
