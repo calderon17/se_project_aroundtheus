@@ -1,6 +1,3 @@
-// enabling validation by calling enableValidation()
-// pass all the settings on call
-
 function showInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   console.log(`#${inputEl.id}-error`);
   const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
@@ -40,9 +37,9 @@ function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
 function setEventListeners(formEl, options) {
   const { inputSelector } = options;
   const inputEls = [...formEl.querySelectorAll(inputSelector)];
-  const submitButton = formEl.querySelector(".modal__button");
-  //const submitButton = options.querySelector(".modal__button");//
-  // i dont know if this what you meant by using the options object, but when i use it, validation does not work//
+  // const submitButton = formEl.querySelector(".modal__button");
+  const submitButton = options.submitButtonSelector(".modal__button");
+  //it is still not working, i understand why its better but i dont see whats wrong?//
   inputEls.forEach((inputEl) => {
     inputEl.addEventListener("input", (e) => {
       checkInputValidity(formEl, inputEl, options);
@@ -66,7 +63,7 @@ const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__close_disabled",
+  inactiveButtonClass: "modal__button_disabled",
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
