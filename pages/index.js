@@ -1,3 +1,6 @@
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -24,6 +27,14 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
+
+const cardData = {
+  name: "Yosemite Valley",
+  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+};
+
+const card = new Card(cardData, "#card-template");
+card.getview();
 
 //----------------------------------------------------------------------------------------
 //                                      Elements
@@ -84,13 +95,8 @@ function getCardElement(cardData) {
   const cardTitleEL = cardElement.querySelector(".card__title");
   const likeButton = cardElement.querySelector(".card__like-button");
   const removeButton = cardElement.querySelector(".card__remove-button");
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
-
-  removeButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
+  // likeButton.addEventListener("click", handleLikeIcon); need to revise
+  // removeButton.addEventListener("click", handleDeleteCard); need to revise
 
   cardImageEL.addEventListener("click", () => {
     modalImageElement.src = cardData.link;
@@ -129,6 +135,24 @@ addOverlayCloseListener(addCardModal);
 addOverlayCloseListener(previewImageModal);
 
 //----------------------------------------------------------------------------------------
+//                                     Validation
+//----------------------------------------------------------------------------------------
+
+const validationSettings = {
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+const editFormEl = profileEditModal.querySelector(".modal__form");
+const addFormEl = addCardModal.querySelector(".modal__form");
+
+console.log(editFormEl);
+console.log(addFormEl);
+
+//----------------------------------------------------------------------------------------
 //                                  Event Handlers
 //----------------------------------------------------------------------------------------
 
@@ -148,6 +172,14 @@ function handleAddCardFormSubmit(e) {
   cardTitleInput.value = "";
   cardUrlInput.value = "";
 }
+
+// function handleLikeIcon(evt) {
+//   evt.target.classList.toggle("card__like-button_active");
+// }need to revise
+
+// function handleDeleteCard(evt) {
+//   evt.target.closest(".card").remove();
+// }need to revise
 
 //----------------------------------------------------------------------------------------
 //                                 Events listeners
