@@ -6,14 +6,14 @@ export default class FormValidator {
     this._inputErrorClass = settings.inputErrorClass;
     this._errorClass = settings.errorClass;
 
-    this.form = formEl;
+    this._form = formEl;
   }
   // ------------------------------------------------------------------------------
-  _showInputError() {
+  _showInputError(inputEl) {
     const errorMessageEl = this._form.querySelector(`#${inputEl.id}-error`);
-    inputEl.classList.add(inputErrorClass);
+    inputEl.classList.add(this._inputErrorClass);
     errorMessageEl.textContent = inputEl.validationMessage;
-    errorMessageEl.classList.add(errorClass);
+    errorMessageEl.classList.add(this._errorClass);
   }
   // ------------------------------------------------------------------------------
 
@@ -47,13 +47,13 @@ export default class FormValidator {
 
   _setEventListeners() {
     // const { this: _inputSelector } = options;
-    this._inputEls = [...this.form.querySelectorAll(this._inputSelector)];
-    this._submitButton = this.form.querySelector(
+    this._inputEls = [...this._form.querySelectorAll(this._inputSelector)];
+    this._submitButton = this._form.querySelector(
       options.this._submitButtonSelector
     );
     inputEls.forEach((inputEl) => {
       inputEl.addEventListener("input", (e) => {
-        checkInputValidity(this.form, inputEl, options);
+        checkInputValidity(this._form, inputEl, options);
         toggleButtonState(inputEls, submitButton, options);
       });
     });
@@ -80,6 +80,6 @@ export default class FormValidator {
 //   errorClass: "modal__error_visible",
 // };
 
-const editFormValidator = new FormValidator();
+const editFormValidator = new FormValidator(settings, formEl);
+const addFormValidator = new FormValidator(settings, addForm);
 editFormValidator.enableValidation();
-// const addFormValidator = new FormValidator(settings, addForm);

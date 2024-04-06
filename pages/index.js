@@ -138,7 +138,7 @@ addOverlayCloseListener(previewImageModal);
 //                                     Validation
 //----------------------------------------------------------------------------------------
 
-const validationSettings = {
+const settings = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
   inactiveButtonClass: "modal__button_disabled",
@@ -149,8 +149,8 @@ const validationSettings = {
 const editFormEl = profileEditModal.querySelector(".modal__form");
 const addFormEl = addCardModal.querySelector(".modal__form");
 
-console.log(editFormEl);
-console.log(addFormEl);
+const editFormValidator = new FormValidator(settings, editFormEl);
+const addFormValidator = new FormValidator(settings, addFormEl);
 
 //----------------------------------------------------------------------------------------
 //                                  Event Handlers
@@ -213,3 +213,5 @@ addCardModalCloseButton.addEventListener("click", () =>
 preImgModalCloseButton.addEventListener("click", () =>
   closePopup(previewImageModal)
 );
+
+//////////////////////////////////////////////
