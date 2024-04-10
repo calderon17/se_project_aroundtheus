@@ -100,14 +100,14 @@ function getCardElement(cardData) {
   const removeButton = cardElement.querySelector(".card__remove-button");
   // likeButton.addEventListener("click", handleLikeIcon); //need to revise
   // removeButton.addEventListener("click", handleDeleteCard); //need to revise
-  cardImageEL.addEventListener("click", handleImagePreview);
+  // cardImageEL.addEventListener("click", handleImagePreview);
 
-  function handleImagePreview(cardData) {
-    modalImageElement.src = cardData.link;
-    modalImageElement.alt = cardData.name;
-    ImageModalcaption.textContent = cardData.name;
-    openPopup(previewImageModal);
-  }
+  // function handleImagePreview(cardData) {
+  //   modalImageElement.src = cardData.link;
+  //   modalImageElement.alt = cardData.name;
+  //   ImageModalcaption.textContent = cardData.name;
+  //   openPopup(previewImageModal);
+  // }
 
   // cardImageEL.addEventListener("click", () => {
   //   modalImageElement.src = cardData.link;

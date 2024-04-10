@@ -24,6 +24,10 @@ export default class Card {
     this._cardElement
       .querySelector(".card__remove-button")
       .addEventListener("click", this._handleDeleteCard);
+
+    this._cardElement
+      .querySelector(".card__image")
+      .addEventListener("click", this._handleImagePreview);
   }
 
   //------------------------------------------------------------
@@ -38,7 +42,12 @@ export default class Card {
       .classList.toggle("card__like-button_active");
   }
   //------------------------------------------------------------
-  _handleImagePreview() {}
+  _handleImagePreview() {
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
+    cardTitle.textContent = this._name;
+    openPopup(previewImageModal);
+  }
 
   //------------------------------------------------------------
   getview() {
@@ -48,5 +57,9 @@ export default class Card {
     // set event listeners
     this._setEventListeners();
     // return the card
+    /////
+    // cardTitleEL.textContent = cardData.name;
+    // cardImageEL.src = cardData.link;
+    // return cardElement;
   }
 }
