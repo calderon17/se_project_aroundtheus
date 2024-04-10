@@ -21,7 +21,12 @@ export default class FormValidator {
 
   // ------------------------------------------------------------------------------
 
-  _checkInputValidity() {}
+  _checkInputValidity(/*formEl,*/ inputEl /*options*/) {
+    if (!inputEl.validity.valid) {
+      return showInputError(formEl, inputEl, options);
+    }
+    hideInputError(formEl, inputEl, options);
+  }
 
   //------------------------------------------------------------------------------
 
@@ -48,13 +53,11 @@ export default class FormValidator {
   _setEventListeners() {
     // const { this: _inputSelector } = options;
     this._inputEls = [...this._form.querySelectorAll(this._inputSelector)];
-    this._submitButton = this._form.querySelector(
-      options.this._submitButtonSelector
-    );
-    inputEls.forEach((inputEl) => {
+    this._submitButton = this._form.querySelector(this._submitButtonSelector);
+    this._inputEls.forEach((inputEl) => {
       inputEl.addEventListener("input", (e) => {
-        checkInputValidity(this._form, inputEl, options);
-        toggleButtonState(inputEls, submitButton, options);
+        _checkInputValidity(this._form, inputEl);
+        _toggleButtonState(inputEls, submitButton);
       });
     });
   }
@@ -66,13 +69,12 @@ export default class FormValidator {
       e.preventDefault();
     });
 
-    setEventListeners(formEl, options);
+    this._setEventListeners();
   }
 }
 // ------------------------------------------------------------------------------
 
 // const settings = {
-//   formSelector: ".modal__form",
 //   inputSelector: ".modal__input",
 //   submitButtonSelector: ".modal__button",
 //   inactiveButtonClass: "modal__button_disabled",
@@ -80,6 +82,12 @@ export default class FormValidator {
 //   errorClass: "modal__error_visible",
 // };
 
-const editFormValidator = new FormValidator(settings, formEl);
-const addFormValidator = new FormValidator(settings, addForm);
-editFormValidator.enableValidation();
+// const formEl = {
+//   formSelector: ".modal__form",
+// };
+
+// //here is the initiation of both
+// // const editFormValidator = new FormValidator(settings, formEl);
+
+// // const addFormValidator = new FormValidator(settings, addForm);
+// editFormValidator.enableValidation();

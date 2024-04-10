@@ -14,12 +14,12 @@ function hideInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   errorMessageEl.classList.remove(errorClass);
 }
 
-function checkInputValidity(formEl, inputEl, options) {
-  if (!inputEl.validity.valid) {
-    return showInputError(formEl, inputEl, options);
-  }
-  hideInputError(formEl, inputEl, options);
-}
+// function checkInputValidity(formEl, inputEl, options) {
+//   if (!inputEl.validity.valid) {
+//     return showInputError(formEl, inputEl, options);
+//   }
+//   hideInputError(formEl, inputEl, options);
+// }
 
 function hasInvalidInput(inputList) {
   return !inputList.every((inputEl) => inputEl.validity.valid);

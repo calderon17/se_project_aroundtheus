@@ -69,6 +69,9 @@ const modalImageElement = previewImageModal.querySelector(".modal__img");
 const ImageModalcaption = previewImageModal.querySelector(".modal__caption");
 const preImgModalCloseButton = previewImageModal.querySelector("#modal-close");
 
+///validation
+
+const cardSelector = "#card-template";
 //----------------------------------------------------------------------------------------
 //                                     Functions
 //----------------------------------------------------------------------------------------
@@ -95,15 +98,23 @@ function getCardElement(cardData) {
   const cardTitleEL = cardElement.querySelector(".card__title");
   const likeButton = cardElement.querySelector(".card__like-button");
   const removeButton = cardElement.querySelector(".card__remove-button");
-  // likeButton.addEventListener("click", handleLikeIcon); need to revise
-  // removeButton.addEventListener("click", handleDeleteCard); need to revise
+  // likeButton.addEventListener("click", handleLikeIcon); //need to revise
+  // removeButton.addEventListener("click", handleDeleteCard); //need to revise
+  cardImageEL.addEventListener("click", handleImagePreview);
 
-  cardImageEL.addEventListener("click", () => {
+  function handleImagePreview(cardData) {
     modalImageElement.src = cardData.link;
     modalImageElement.alt = cardData.name;
     ImageModalcaption.textContent = cardData.name;
     openPopup(previewImageModal);
-  });
+  }
+
+  // cardImageEL.addEventListener("click", () => {
+  //   modalImageElement.src = cardData.link;
+  //   modalImageElement.alt = cardData.name;
+  //   ImageModalcaption.textContent = cardData.name;
+  //   openPopup(previewImageModal);
+  // }); //////////////////////////////////////sdfsd///////////sdf/////////////sdfsd//////////sdsdf/
 
   cardImageEL.alt = cardData.name;
 
@@ -115,7 +126,10 @@ function getCardElement(cardData) {
 function renderCard(cardData) {
   const cardElement = getCardElement(cardData);
   cardListEl.prepend(cardElement);
+  const card = new Card(cardData, cardSelector);
 }
+
+//handleImagePreview function
 
 // Close on overlay
 
@@ -152,6 +166,9 @@ const addFormEl = addCardModal.querySelector(".modal__form");
 const editFormValidator = new FormValidator(settings, editFormEl);
 const addFormValidator = new FormValidator(settings, addFormEl);
 
+editFormValidator.enableValidation();
+addFormValidator.enableValidation();
+
 //----------------------------------------------------------------------------------------
 //                                  Event Handlers
 //----------------------------------------------------------------------------------------
@@ -175,11 +192,11 @@ function handleAddCardFormSubmit(e) {
 
 // function handleLikeIcon(evt) {
 //   evt.target.classList.toggle("card__like-button_active");
-// }need to revise
+// } // need to revise
 
 // function handleDeleteCard(evt) {
 //   evt.target.closest(".card").remove();
-// }need to revise
+// } // need to revise
 
 //----------------------------------------------------------------------------------------
 //                                 Events listeners
