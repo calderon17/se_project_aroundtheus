@@ -1,5 +1,24 @@
+const previewImageModal = document.querySelector("#preview-image-modal");
+const modalImageElement = previewImageModal.querySelector(".modal__img");
+const ImageModalcaption = previewImageModal.querySelector(".modal__caption");
+const preImgModalCloseButton = previewImageModal.querySelector("#modal-close");
+
+function closePopup(popup) {
+  popup.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEsc);
+}
+
+function openPopup(popup) {
+  popup.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEsc);
+}
+
+//----------------------------------------------------------------------------------------
+//                                  Actual card
+//----------------------------------------------------------------------------------------
+
 export default class Card {
-  constructor({ name, link }, cardSelector) {
+  constructor({ name, link }, cardSelector, _handleImagePreview) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
@@ -42,24 +61,22 @@ export default class Card {
       .classList.toggle("card__like-button_active");
   }
   //------------------------------------------------------------
-  _handleImagePreview() {
-    this._cardImage.src = this._link;
-    this._cardImage.alt = this._name;
-    cardTitle.textContent = this._name;
+  _handleImagePreview(cardData) {
+    modalImageElement.src = cardData.this._link;
+    modalImageElement.alt = cardData.this._name;
+    ImageModalcaption.textContent = cardData.this._name;
     openPopup(previewImageModal);
   }
 
   //------------------------------------------------------------
   getview() {
     this._cardElement = this._getTemplate();
-
-    // get the card view
-    // set event listeners
     this._setEventListeners();
-    // return the card
-    /////
-    // cardTitleEL.textContent = cardData.name;
-    // cardImageEL.src = cardData.link;
-    // return cardElement;
+    this._cardElement.querySelector(
+      ".card__image"
+    ).style.backgroundImagae = `url(${this._link})`;
+    this._cardElement.querySelector(".card__title").textContent = this._name;
+
+    return this._cardElement;
   }
 }

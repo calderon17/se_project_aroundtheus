@@ -69,9 +69,6 @@ const modalImageElement = previewImageModal.querySelector(".modal__img");
 const ImageModalcaption = previewImageModal.querySelector(".modal__caption");
 const preImgModalCloseButton = previewImageModal.querySelector("#modal-close");
 
-///validation
-
-const cardSelector = "#card-template";
 //----------------------------------------------------------------------------------------
 //                                     Functions
 //----------------------------------------------------------------------------------------
@@ -102,13 +99,6 @@ function getCardElement(cardData) {
   // removeButton.addEventListener("click", handleDeleteCard); //need to revise
   // cardImageEL.addEventListener("click", handleImagePreview);
 
-  // function handleImagePreview(cardData) {
-  //   modalImageElement.src = cardData.link;
-  //   modalImageElement.alt = cardData.name;
-  //   ImageModalcaption.textContent = cardData.name;
-  //   openPopup(previewImageModal);
-  // }
-
   // cardImageEL.addEventListener("click", () => {
   //   modalImageElement.src = cardData.link;
   //   modalImageElement.alt = cardData.name;
@@ -123,13 +113,17 @@ function getCardElement(cardData) {
   return cardElement;
 }
 
-function renderCard(cardData) {
-  const cardElement = getCardElement(cardData);
-  cardListEl.prepend(cardElement);
-  const card = new Card(cardData, cardSelector);
-}
+// function renderCard(cardData) {
+//   const card = new Card(cardData, cardSelector, handleImagePreview);
+//   const cardElement = getCardElement(cardData);
+//   cardListEl.prepend(cardElement);
+// }
 
-//handleImagePreview function
+function renderCard(cardData) {
+  const card = new Card(cardData, cardSelector, handleImagePreview);
+  const cardElement = card.getview();
+  cardListEl.prepend(cardElement);
+}
 
 // Close on overlay
 
@@ -151,6 +145,9 @@ addOverlayCloseListener(previewImageModal);
 //----------------------------------------------------------------------------------------
 //                                     Validation
 //----------------------------------------------------------------------------------------
+///validation
+
+const cardSelector = "#card-template";
 
 const settings = {
   inputSelector: ".modal__input",
@@ -232,3 +229,10 @@ preImgModalCloseButton.addEventListener("click", () =>
 );
 
 //////////////////////////////////////////////
+
+function handleImagePreview(cardData) {
+  modalImageElement.src = cardData.link;
+  modalImageElement.alt = cardData.name;
+  ImageModalcaption.textContent = cardData.name;
+  openPopup(previewImageModal);
+}
