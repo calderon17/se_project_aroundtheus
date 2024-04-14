@@ -13,6 +13,12 @@ function openPopup(popup) {
   document.addEventListener("keydown", handleEsc);
 }
 
+function handleEsc(evt) {
+  if (evt.key === "Escape") {
+    const openedModal = document.querySelector(".modal_opened");
+    closePopup(openedModal);
+  }
+}
 //----------------------------------------------------------------------------------------
 //                                  Actual card
 //----------------------------------------------------------------------------------------
@@ -62,9 +68,9 @@ export default class Card {
   }
   //------------------------------------------------------------
   _handleImagePreview(cardData) {
-    modalImageElement.src = cardData.this._link;
-    modalImageElement.alt = cardData.this._name;
-    ImageModalcaption.textContent = cardData.this._name;
+    modalImageElement.src = this._link;
+    modalImageElement.alt = this._name;
+    ImageModalcaption.textContent = this._name;
     openPopup(previewImageModal);
   }
 
