@@ -67,7 +67,7 @@ export default class Card {
       .classList.toggle("card__like-button_active");
   }
   //------------------------------------------------------------
-  _handleImagePreview(cardData) {
+  _handleImagePreview() {
     modalImageElement.src = this._link;
     modalImageElement.alt = this._name;
     ImageModalcaption.textContent = this._name;
@@ -78,9 +78,7 @@ export default class Card {
   getview() {
     this._cardElement = this._getTemplate();
     this._setEventListeners();
-    this._cardElement.querySelector(
-      ".card__image"
-    ).style.backgroundImagae = `url(${this._link})`;
+    this._cardElement.querySelector(".card__image").src = this._link;
     this._cardElement.querySelector(".card__title").textContent = this._name;
 
     return this._cardElement;
