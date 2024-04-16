@@ -231,8 +231,8 @@ preImgModalCloseButton.addEventListener("click", () =>
 //////////////////////////////////////////////
 
 function handleImagePreview(cardData) {
-  modalImageElement.src = cardData.link;
-  modalImageElement.alt = cardData.name;
+  modalImageElement.src = cardData._link;
+  modalImageElement.alt = cardData._name;
   ImageModalcaption.textContent = cardData.name;
   openPopup(previewImageModal);
 }

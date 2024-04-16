@@ -24,10 +24,11 @@ function handleEsc(evt) {
 //----------------------------------------------------------------------------------------
 
 export default class Card {
-  constructor({ name, link }, cardSelector, _handleImagePreview) {
+  constructor({ name, link }, cardSelector, handleImagePreview) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
+    this._handleImagePreview = handleImagePreview;
   }
 
   //------------------------------------------------------------
@@ -52,7 +53,9 @@ export default class Card {
 
     this._cardElement
       .querySelector(".card__image")
-      .addEventListener("click", this._handleImagePreview);
+      .addEventListener("click", () => {
+        this._handleImagePreview(this);
+      });
   }
 
   //------------------------------------------------------------
