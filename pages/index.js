@@ -89,29 +89,29 @@ function openPopup(popup) {
   document.addEventListener("keydown", handleEsc);
 }
 
-function getCardElement(cardData) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImageEL = cardElement.querySelector(".card__image");
-  const cardTitleEL = cardElement.querySelector(".card__title");
-  const likeButton = cardElement.querySelector(".card__like-button");
-  const removeButton = cardElement.querySelector(".card__remove-button");
-  // likeButton.addEventListener("click", handleLikeIcon); //need to revise
-  // removeButton.addEventListener("click", handleDeleteCard); //need to revise
-  // cardImageEL.addEventListener("click", handleImagePreview);
+// function getCardElement(cardData) {
+//   const cardElement = cardTemplate.cloneNode(true);
+//   const cardImageEL = cardElement.querySelector(".card__image");
+//   const cardTitleEL = cardElement.querySelector(".card__title");
+//   const likeButton = cardElement.querySelector(".card__like-button");
+//   const removeButton = cardElement.querySelector(".card__remove-button");
+//   // likeButton.addEventListener("click", handleLikeIcon); //need to revise
+//   // removeButton.addEventListener("click", handleDeleteCard); //need to revise
+//   // cardImageEL.addEventListener("click", handleImagePreview);
 
-  // cardImageEL.addEventListener("click", () => {
-  //   modalImageElement.src = cardData.link;
-  //   modalImageElement.alt = cardData.name;
-  //   ImageModalcaption.textContent = cardData.name;
-  //   openPopup(previewImageModal);
-  // }); //////////////////////////////////////sdfsd///////////sdf/////////////sdfsd//////////sdsdf/
+//   // cardImageEL.addEventListener("click", () => {
+//   //   modalImageElement.src = cardData.link;
+//   //   modalImageElement.alt = cardData.name;
+//   //   ImageModalcaption.textContent = cardData.name;
+//   //   openPopup(previewImageModal);
+//   // }); //////////////////////////////////////sdfsd///////////sdf/////////////sdfsd//////////sdsdf/
 
-  cardImageEL.alt = cardData.name;
+//   cardImageEL.alt = cardData.name;
 
-  cardTitleEL.textContent = cardData.name;
-  cardImageEL.src = cardData.link;
-  return cardElement;
-}
+//   cardTitleEL.textContent = cardData.name;
+//   cardImageEL.src = cardData.link;
+//   return cardElement;
+// }
 
 // function renderCard(cardData) {
 //   const card = new Card(cardData, cardSelector, handleImagePreview);

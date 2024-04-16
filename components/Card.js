@@ -1,7 +1,6 @@
 const previewImageModal = document.querySelector("#preview-image-modal");
 const modalImageElement = previewImageModal.querySelector(".modal__img");
 const ImageModalcaption = previewImageModal.querySelector(".modal__caption");
-const preImgModalCloseButton = previewImageModal.querySelector("#modal-close");
 
 function closePopup(popup) {
   popup.classList.remove("modal_opened");
@@ -41,12 +40,10 @@ export default class Card {
 
   //------------------------------------------------------------
   _setEventListeners() {
-    //.card__like-button
     this._cardElement
       .querySelector(".card__like-button")
       .addEventListener("click", this._handleLikeIcon);
 
-    // .card__remove-button
     this._cardElement
       .querySelector(".card__remove-button")
       .addEventListener("click", this._handleDeleteCard);
@@ -59,16 +56,16 @@ export default class Card {
   }
 
   //------------------------------------------------------------
-  _handleDeleteCard() {
+  _handleDeleteCard = () => {
     this._cardElement.remove();
     this._cardElement = null;
-  }
+  };
   //------------------------------------------------------------
-  _handleLikeIcon() {
+  _handleLikeIcon = () => {
     this._cardElement
       .querySelector(".card__like-button")
       .classList.toggle("card__like-button_active");
-  }
+  };
   //------------------------------------------------------------
   _handleImagePreview() {
     modalImageElement.src = this._link;

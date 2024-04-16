@@ -28,10 +28,18 @@ export default class FormValidator {
 
   _checkInputValidity(inputEl) {
     if (!inputEl.validity.valid) {
-      return showInputError(this._form, inputEl);
+      return this._showInputError(inputEl);
     }
-    hideInputError(this._form, inputEl);
+    this._hideInputError(inputEl);
   }
+
+  // _checkInputValidity(inputEl) {
+  //   if (!inputEl.validity.valid) {
+  //     this._showInputError(inputEl);
+  //   } else {
+  //     this._hideInputError(inputEl);
+  //   }
+  // }
 
   //------------------------------------------------------------------------------
 
@@ -41,8 +49,8 @@ export default class FormValidator {
 
   // ------------------------------------------------------------------------------
 
-  toggleButtonState(inputEls, submitButton) {
-    if (hasInvalidInput(inputEls)) {
+  _toggleButtonState(inputEls, submitButton) {
+    if (this._hasInvalidInput(inputEls)) {
       submitButton.classList.add(this._inactiveButtonClass);
       submitButton.disbled = true;
       return;
@@ -58,8 +66,8 @@ export default class FormValidator {
     this._submitButton = this._form.querySelector(this._submitButtonSelector);
     this._inputEls.forEach((inputEl) => {
       inputEl.addEventListener("input", () => {
-        _checkInputValidity(this._form, inputEl);
-        _toggleButtonState(this._inputEls, submitButton);
+        this._checkInputValidity(inputEl);
+        this._toggleButtonState(this._inputEls, this._submitButton);
       });
     });
   }
@@ -75,21 +83,3 @@ export default class FormValidator {
   }
 }
 // ------------------------------------------------------------------------------
-
-// const settings = {
-//   inputSelector: ".modal__input",
-//   submitButtonSelector: ".modal__button",
-//   inactiveButtonClass: "modal__button_disabled",
-//   inputErrorClass: "modal__input_type_error",
-//   errorClass: "modal__error_visible",
-// };
-
-// const formEl = {
-//   formSelector: ".modal__form",
-// };
-
-// //here is the initiation of both
-// // const editFormValidator = new FormValidator(settings, formEl);
-
-// // const addFormValidator = new FormValidator(settings, addForm);
-// editFormValidator.enableValidation();
