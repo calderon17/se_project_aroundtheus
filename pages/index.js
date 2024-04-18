@@ -94,17 +94,25 @@ function openPopup(popup) {
 //   const card = new Card(cardData, cardSelector, handleImagePreview);
 //   const cardElement = card.getview();
 //   cardListEl.prepend(cardElement);
-// }///////////////////////////////    this is how i had it before
+// } ///////////////////////////////    this is how i had it before
 
-function createCard() {
-  const card = new Card(cardData, cardSelector, handleImagePreview);
-  return cardElement.getview(createCard);
+// function createCard() {
+//   const card = new Card(cardData, cardSelector, handleImagePreview);
+//   return cardElement.getview(createCard);
+// }
+function createCard(item) {
+  const card = new Card(item, cardSelector, handleImagePreview); // Assumed variables
+  return card.getview();
 }
 
-function renderCard() {
-  createCard();
-  const cardElement = card.getview();
-  cardListEl.prepend(cardElement);
+// function renderCard() {
+//   createCard();
+//   const cardElement = card.getview();
+//   cardListEl.prepend(cardElement);
+// }
+function renderCard(item) {
+  const cardElement = createCard(item);
+  cardListEl.prepend(cardElement); // or append, based on specific use case
 }
 
 // Close on overlay
@@ -204,9 +212,9 @@ addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 //////////////////////////////////////////////
 
 function handleImagePreview(cardData) {
-  modalImageElement.src = cardData._link;
-  modalImageElement.alt = cardData._name;
-  imageModalcaption.textContent = cardData._name;
+  modalImageElement.src = cardData.link;
+  modalImageElement.alt = cardData.name;
+  imageModalcaption.textContent = cardData.name;
   openPopup(previewImageModal);
 }
 

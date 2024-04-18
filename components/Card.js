@@ -4,8 +4,8 @@
 
 export default class Card {
   constructor({ name, link }, cardSelector, handleImagePreview) {
-    this._name = name;
-    this._link = link;
+    this.name = name;
+    this.link = link;
     this._cardSelector = cardSelector;
     this._handleImagePreview = handleImagePreview;
   }
@@ -60,9 +60,9 @@ export default class Card {
   getview() {
     this._cardElement = this._getTemplate();
     this._setEventListeners();
-    this._cardElement.querySelector(".card__image").src = this._link;
-    this._cardElement.querySelector(".card__image").alt = this._name;
-    this._cardElement.querySelector(".card__title").textContent = this._name;
+    this._cardElement.querySelector(".card__image").src = this.link;
+    this._cardElement.querySelector(".card__image").alt = this.name;
+    this._cardElement.querySelector(".card__title").textContent = this.name;
 
     this._likeButton = this._cardElement.querySelector(".card__like-button");
     // this.cardImage = this._cardElement.querySelector(".card__image");
