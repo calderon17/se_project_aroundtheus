@@ -43,8 +43,8 @@ export default class FormValidator {
 
   //------------------------------------------------------------------------------
 
-  _hasInvalidInput(inputList) {
-    return !inputList.every((inputEl) => inputEl.validity.valid);
+  _hasInvalidInput() {
+    return !this._inputEls.every((inputEl) => inputEl.validity.valid);
   }
 
   //------------------------------
@@ -58,14 +58,14 @@ export default class FormValidator {
 
   // ------------------------------------------------------------------------------
 
-  _toggleButtonState(inputEls, submitButton) {
-    if (this._hasInvalidInput(inputEls)) {
-      submitButton.classList.add(this._inactiveButtonClass);
-      submitButton.disbled = true;
+  _toggleButtonState() {
+    if (this._hasInvalidInput()) {
+      this._submitButton.classList.add(this._inactiveButtonClass);
+      this._submitButton.disbled = true;
       return;
     }
-    submitButton.classList.remove(this._inactiveButtonClass);
-    submitButton.disbled = false;
+    this._submitButton.classList.remove(this._inactiveButtonClass);
+    this._submitButton.disbled = false;
   }
 
   // ------------------------------------------------------------------------------
