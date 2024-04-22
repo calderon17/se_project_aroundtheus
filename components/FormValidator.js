@@ -33,14 +33,6 @@ export default class FormValidator {
     this._hideInputError(inputEl);
   }
 
-  // _checkInputValidity(inputEl) {
-  //   if (!inputEl.validity.valid) {
-  //     this._showInputError(inputEl);
-  //   } else {
-  //     this._hideInputError(inputEl);
-  //   }
-  // }
-
   //------------------------------------------------------------------------------
 
   _hasInvalidInput() {
@@ -85,7 +77,7 @@ export default class FormValidator {
 
   enableValidation() {
     this._form.addEventListener("submit", (e) => {
-      e.preventDefault();
+      e.preventDefau;
     });
 
     this._setEventListeners();

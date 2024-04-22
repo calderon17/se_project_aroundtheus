@@ -48,13 +48,6 @@ export default class Card {
     // --- OG code--
     this._likeButton.classList.toggle("card__like-button_active");
   };
-  //------------------------------------------------------------
-  // _handleImagePreview() {
-  //   modalImageElement.src = this._link;
-  //   modalImageElement.alt = this._name;
-  //   imageModalcaption.textContent = this._name;
-  //   openPopup(previewImageModal);
-  // }
 
   //------------------------------------------------------------
   getview() {

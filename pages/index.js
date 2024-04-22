@@ -53,9 +53,8 @@ const profileDescriptionInput = document.querySelector(
 
 const addNewCardButton = document.querySelector(".profile__add-button");
 
-const profileEditForm = document.forms["modal-form"];
-const addCardFormElement = document.forms["modal-form"];
-
+const profileEditForm = profileEditModal.querySelector("#modal-form");
+const addCardFormElement = addCardModal.querySelector("#modal-form");
 const cardTitleInput = addCardFormElement.querySelector("#card-title-input");
 const cardUrlInput = addCardFormElement.querySelector("#card-url-input");
 
@@ -89,27 +88,11 @@ function openPopup(popup) {
   popup.classList.add("modal_opened");
   document.addEventListener("keydown", handleEsc);
 }
-
-// function renderCard(cardData) {
-//   const card = new Card(cardData, cardSelector, handleImagePreview);
-//   const cardElement = card.getview();
-//   cardListEl.prepend(cardElement);
-// } ///////////////////////////////    this is how i had it before
-
-// function createCard() {
-//   const card = new Card(cardData, cardSelector, handleImagePreview);
-//   return cardElement.getview(createCard);
-// }
 function createCard(item) {
   const card = new Card(item, cardSelector, handleImagePreview); // Assumed variables
   return card.getview();
 }
 
-// function renderCard() {
-//   createCard();
-//   const cardElement = card.getview();
-//   cardListEl.prepend(cardElement);
-// }
 function renderCard(item) {
   const cardElement = createCard(item);
   cardListEl.prepend(cardElement); // or append, based on specific use case
@@ -146,9 +129,6 @@ const settings = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
-
-// const editFormEl = profileEditModal.querySelector(".modal__form");
-// const addFormEl = addCardModal.querySelector(".modal__form");
 
 const editFormValidator = new FormValidator(settings, profileEditForm);
 const addFormValidator = new FormValidator(settings, addCardFormElement);
@@ -187,9 +167,7 @@ profileEditButton.addEventListener("click", () => {
   profileDescriptionInput.value = profileDescription.textContent;
   openPopup(profileEditModal);
 });
-// profileModalCloseButton.addEventListener("click", () =>
-//   closePopup(profileEditModal)
-// );
+
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 initialCards.forEach(renderCard);
@@ -201,14 +179,6 @@ addNewCardButton.addEventListener("click", () => {
 });
 addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
-// addCardModalCloseButton.addEventListener("click", () =>
-//   closePopup(addCardModal)
-// );
-
-// preImgModalCloseButton.addEventListener("click", () =>
-//   closePopup(previewImageModal)
-// );
-
 //////////////////////////////////////////////
 
 function handleImagePreview(cardData) {
@@ -217,10 +187,3 @@ function handleImagePreview(cardData) {
   imageModalcaption.textContent = cardData.name;
   openPopup(previewImageModal);
 }
-
-// function resetValidation() {
-//   toggleButtonState();
-//   inputList.forEach((inputElement) => {
-//     hideError(inputElement);
-//   });
-// }
