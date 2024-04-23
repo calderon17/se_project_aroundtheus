@@ -20,19 +20,20 @@ export default class Card {
 
   //------------------------------------------------------------
   _setEventListeners() {
-    this._cardElement
-      .querySelector(".card__like-button")
-      .addEventListener("click", this._handleLikeIcon);
+    // this._cardElement
+    //   .querySelector(".card__like-button")
+    this._likeButton.addEventListener("click", this._handleLikeIcon);
 
-    this._cardElement
-      .querySelector(".card__remove-button")
-      .addEventListener("click", this._handleDeleteCard);
+    // this._cardElement
+    //   .querySelector(".card__remove-button")
 
-    this._cardElement
-      .querySelector(".card__image")
-      .addEventListener("click", () => {
-        this._handleImagePreview(this);
-      });
+    this._deleteCard.addEventListener("click", this._handleDeleteCard);
+
+    // this._cardElement;
+    // .querySelector(".card__image")
+    this._cardImage.addEventListener("click", () => {
+      this._handleImagePreview(this);
+    });
   }
 
   //------------------------------------------------------------
@@ -52,15 +53,15 @@ export default class Card {
   //------------------------------------------------------------
   getview() {
     this._cardElement = this._getTemplate();
-    this._setEventListeners();
     this._cardElement.querySelector(".card__image").src = this.link;
     this._cardElement.querySelector(".card__image").alt = this.name;
     this._cardElement.querySelector(".card__title").textContent = this.name;
 
     this._likeButton = this._cardElement.querySelector(".card__like-button");
-    // this.cardImage = this._cardElement.querySelector(".card__image");
-    // tried with _setEventListeners, did not work,
-    // i dont know if it was only the like button.
+    this._cardImage = this._cardElement.querySelector(".card__image");
+    this._deleteCard = this._cardElement.querySelector(".card__remove-button");
+
+    this._setEventListeners();
 
     return this._cardElement;
   }
