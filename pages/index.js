@@ -81,6 +81,7 @@ function handleEsc(evt) {
 function closePopup(popup) {
   popup.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEsc);
+
   // resetValidation();
 }
 
@@ -89,13 +90,13 @@ function openPopup(popup) {
   document.addEventListener("keydown", handleEsc);
 }
 function createCard(item) {
-  const card = new Card(item, cardSelector, handleImagePreview); // Assumed variables
+  const card = new Card(item, cardSelector, handleImagePreview);
   return card.getview();
 }
 
 function renderCard(item) {
   const cardElement = createCard(item);
-  cardListEl.prepend(cardElement); // or append, based on specific use case
+  cardListEl.prepend(cardElement);
 }
 
 // Close on overlay
@@ -155,6 +156,7 @@ function handleAddCardFormSubmit(e) {
   closePopup(addCardModal);
   cardTitleInput.value = "";
   cardUrlInput.value = "";
+  addFormValidator.resetValidation();
 }
 //----------------------------------------------------------------------------------------
 //                                 Events listeners
