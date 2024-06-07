@@ -107,7 +107,7 @@ const editProfilePopup = new PopupWithForm(
 );
 // //adjust both add and edit instances
 
-// const imagePreviewPopup = new PopupWithImage(popupSelector); //should be good
+// const imagePreviewPopup = new PopupWithImage({ popupSelector }); //should be good
 // imagePreviewPopup.popupSelector;
 
 // const userInfor = new UserInfo({
@@ -239,5 +239,5 @@ function handleImagePreview(cardData) {
   modalImageElement.src = cardData.link;
   modalImageElement.alt = cardData.name;
   imageModalcaption.textContent = cardData.name;
-  openPopup(previewImageModal);
+  /**/ open(previewImageModal);
 }
