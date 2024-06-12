@@ -71,7 +71,7 @@ const cardUrlInput = addCardFormElement.querySelector("#card-url-input");
 
 const cardListEl = document.querySelector(".cards__list");
 const cardImageEL = document.querySelector(".cards__list");
-const cardTemplate =
+const Template =
   document.querySelector("#card-template").content.firstElementChild;
 
 const previewImageModal = document.querySelector("#preview-image-modal");
@@ -89,8 +89,9 @@ const cardSection = new Section(
     renderer: (cardData) => {
       // create a card using the Card class
       // render the card using cardSection.addItem(<pass-in-element-here>)
-      cardSection.renderCard(cardData);
+      // cardSection.renderCard(cardData); didnt work
       //call the render card function that has both
+      cardSection.addItem(cardData);
     },
   },
   ".cards__list"
@@ -107,7 +108,7 @@ const editProfilePopup = new PopupWithForm(
 );
 // //adjust both add and edit instances
 
-// const imagePreviewPopup = new PopupWithImage({ popupSelector }); //should be good
+const imagePreviewPopup = new PopupWithImage("#preview-image-modal"); //should be good
 // imagePreviewPopup.popupSelector;
 
 // const userInfor = new UserInfo({
@@ -204,7 +205,7 @@ function handleAddCardFormSubmit(e) {
   e.preventDefault();
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
-  cardSection.renderItems({ name, link }, cardListEl);
+  cardSection.addItem({ name, link }, cardListEl);
   addCardPopup.close(addCardModal);
   cardTitleInput.value = "";
   cardUrlInput.value = "";
@@ -239,5 +240,5 @@ function handleImagePreview(cardData) {
   modalImageElement.src = cardData.link;
   modalImageElement.alt = cardData.name;
   imageModalcaption.textContent = cardData.name;
-  /**/ open(previewImageModal);
+  imagePreviewPopup.open(previewImageModal);
 }
