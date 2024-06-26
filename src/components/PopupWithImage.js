@@ -9,6 +9,7 @@ class PopupWithImage extends Popup {
   open({ link, name }) {
     this._image.src = link;
     this._image.alt = name;
+
     super.open();
   }
 }

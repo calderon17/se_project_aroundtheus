@@ -4,11 +4,11 @@ import "./index.css";
 
 //________
 
-import Popup from "../components/Popup.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/Popupwithform.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/userInfo.js";
+import { data } from "autoprefixer";
 
 //_______
 
@@ -86,12 +86,12 @@ const preImgModalCloseButton = previewImageModal.querySelector("#modal-close");
 const cardSection = new Section(
   {
     items: initialCards,
-    renderer: (cardData) => {
+    renderer: () => {
       // create a card using the Card class
       // render the card using cardSection.addItem(<pass-in-element-here>)
       // cardSection.renderCard(cardData); didnt work
-      //call the render card function that has both
-      cardSection.addItem(cardData);
+      // call the render card function that has both
+      // cardSection.addItem(cardData);
     },
   },
   ".cards__list"
@@ -112,7 +112,7 @@ editProfilePopup.setEventListeners();
 // //adjust both add and edit instances
 
 const imagePreviewPopup = new PopupWithImage("#preview-image-modal"); //should be good
-// imagePreviewPopup.popupSelector;
+imagePreviewPopup.setEventListeners();
 
 // const userInfor = new UserInfo({
 //   profileName: "#some-id",
@@ -204,14 +204,18 @@ function handleProfileEditSubmit() {
 }
 
 function handleAddCardFormSubmit() {
+  console.log(cardData);
+  const cardEl = createCard({ name: cardData.title, link: cardData.url });
+  cardSection.addItem(cardEl);
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
-  cardSection.addItem({ name, link }); /*cardListEl*/
+  cardSection.addItem({ name, link });
   addCardPopup.close(addCardModal);
   cardTitleInput.value = "";
   cardUrlInput.value = "";
   addFormValidator.resetValidation();
 }
+
 //----------------------------------------------------------------------------------------
 //                                 Events listeners
 //----------------------------------------------------------------------------------------
@@ -239,8 +243,8 @@ addNewCardButton.addEventListener("click", () => {
 //////////////////////////////////////////////
 
 function handleImagePreview(cardData) {
-  modalImageElement.src = cardData.link;
-  modalImageElement.alt = cardData.name;
+  /*modalImageElement.src = cardData.link;
+  modalImageElement.alt = cardData.name;*/
   imageModalcaption.textContent = cardData.name;
-  imagePreviewPopup.open(previewImageModal);
+  imagePreviewPopup.open(cardData);
 }
