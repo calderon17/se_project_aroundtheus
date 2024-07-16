@@ -12,11 +12,11 @@ class PopupWithForm extends Popup {
     const inputList = Array.from(
       this._popupForm.querySelector(".modal__input")
     );
-    const data = {};
+    const inputValues = {};
     inputList.forEach((input) => {
-      data[input.name] = input.value;
+      inputValues[input.name] = input.value;
     });
-    return data;
+    return inputValues;
   }
 
   setEventListeners() {

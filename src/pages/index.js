@@ -39,10 +39,10 @@ const initialCards = [
   },
 ];
 
-const cardData = {
-  name: "Yosemite Valley",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-};
+// const cardData = {
+//   name: "Yosemite Valley",
+//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+// };
 
 // const card = new Card(cardData, "#card-template");
 // card.getview();
@@ -92,6 +92,8 @@ const cardSection = new Section(
       // cardSection.renderCard(cardData); didnt work
       // call the render card function that has both
       // cardSection.addItem(cardData);
+      createCard.inputValues();
+      cardSection.addItem();
     },
   },
   ".cards__list"
@@ -137,6 +139,11 @@ function renderCard(item) {
   const cardElement = createCard(item);
   cardListEl.prepend(cardElement);
 }
+
+// function renderCard(item) {
+//   const cardElement = createCard(item);
+//   cardListEl.prepend(cardElement);
+// }
 
 // function handleEsc(evt) {
 //   if (evt.key === "Escape") {
@@ -203,13 +210,16 @@ function handleProfileEditSubmit() {
   editProfilePopup.close(profileEditModal);
 }
 
-function handleAddCardFormSubmit() {
-  console.log(cardData);
-  const cardEl = createCard({ name: cardData.title, link: cardData.url });
-  cardSection.addItem(cardEl);
-  const name = cardTitleInput.value;
-  const link = cardUrlInput.value;
-  cardSection.addItem({ name, link });
+function handleAddCardFormSubmit(inputValues) {
+  console.log(inputValues);
+  const cardEl = createCard(inputValues);
+  // cardSection.addItem(cardEl);
+  cardSection.addItem(
+    createCard({ name: inputValues.title, link: inputValues.url })
+  );
+  // const name = cardTitleInput.value;
+  // const link = cardUrlInput.value;
+  // cardSection.addItem({ name, link });
   addCardPopup.close(addCardModal);
   cardTitleInput.value = "";
   cardUrlInput.value = "";
