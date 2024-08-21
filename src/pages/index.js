@@ -92,7 +92,7 @@ const cardSection = new Section(
       // cardSection.renderCard(cardData); didnt work
       // call the render card function that has both
       // cardSection.addItem(cardData);
-      createCard.inputValues();
+      // createCard.inputValues();
       cardSection.addItem();
     },
   },
@@ -212,7 +212,7 @@ function handleProfileEditSubmit() {
 
 function handleAddCardFormSubmit(inputValues) {
   console.log(inputValues);
-  const cardEl = createCard(inputValues);
+  // const cardEl = createCard(inputValues);
   // cardSection.addItem(cardEl);
   cardSection.addItem(
     createCard({ name: inputValues.title, link: inputValues.url })
@@ -220,7 +220,7 @@ function handleAddCardFormSubmit(inputValues) {
   // const name = cardTitleInput.value;
   // const link = cardUrlInput.value;
   // cardSection.addItem({ name, link });
-  addCardPopup.close(addCardModal);
+  addCardPopup.close();
   cardTitleInput.value = "";
   cardUrlInput.value = "";
   addFormValidator.resetValidation();
@@ -235,7 +235,7 @@ function handleAddCardFormSubmit(inputValues) {
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-  editProfilePopup.open(profileEditModal);
+  editProfilePopup.open();
 });
 
 // profileEditForm.addEventListener("submit", editProfilePopup);
@@ -245,7 +245,7 @@ initialCards.forEach(renderCard);
 // Add new card
 
 addNewCardButton.addEventListener("click", () => {
-  addCardPopup.open(addCardModal);
+  addCardPopup.open();
 });
 
 // addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
