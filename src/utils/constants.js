@@ -65,6 +65,7 @@ export {
   addCardModalCloseButton,
   addNewCardButton,
   profileEditForm,
+  addCardFormElement,
   cardTitleInput,
   cardUrlInput,
   cardListEl,
@@ -84,6 +85,3 @@ export const settings = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
-
-export const editFormValidator = new FormValidator(settings, profileEditForm);
-export const addFormValidator = new FormValidator(settings, addCardFormElement);

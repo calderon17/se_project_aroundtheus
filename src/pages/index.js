@@ -25,6 +25,7 @@ import {
   addCardModalCloseButton,
   addNewCardButton,
   profileEditForm,
+  addCardFormElement,
   cardTitleInput,
   cardUrlInput,
   cardListEl,
@@ -35,14 +36,12 @@ import {
   preImgModalCloseButton,
   cardSelector,
   settings,
-  editFormValidator,
-  addFormValidator,
 } from "../utils/constants.js";
 
 console.log(initialCards);
 console.log(profileEditButton);
-editFormValidator.enableValidation();
-addFormValidator.enableValidation();
+// editFormValidator.enableValidation();
+// addFormValidator.enableValidation();
 
 // const initialCards = [
 //   {
@@ -218,11 +217,11 @@ function renderCard(item) {
 //   errorClass: "modal__error_visible",
 // };
 
-// const editFormValidator = new FormValidator(settings, profileEditForm);
-// const addFormValidator = new FormValidator(settings, addCardFormElement);
+const editFormValidator = new FormValidator(settings, profileEditForm);
+const addFormValidator = new FormValidator(settings, addCardFormElement);
 
-// editFormValidator.enableValidation();
-// addFormValidator.enableValidation();
+editFormValidator.enableValidation();
+addFormValidator.enableValidation();
 
 //----------------------------------------------------------------------------------------
 //                                  Event Handlers
