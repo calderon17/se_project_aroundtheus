@@ -100,12 +100,6 @@ function createCard(item) {
   return card.getview();
 }
 
-// function renderCard(item) {
-//   const cardElement = createCard(item);
-//   cardSection.addItem(cardElement);
-//   // cardListEl.prepend(cardElement);
-// }
-
 const editFormValidator = new FormValidator(settings, profileEditForm);
 const addFormValidator = new FormValidator(settings, addCardFormElement);
 
