@@ -53,13 +53,16 @@ console.log(profileEditButton);
 
 const cardSection = new Section(
   {
-    item: initialCards.forEach(renderCard),
-    renderer: () => {
-      cardSection.addItem();
+    items: initialCards,
+    renderer: (cardData) => {
+      const cardElement = createCard(cardData);
+      cardSection.addItem(cardElement);
     },
   },
   ".cards__list"
 );
+
+cardSection.renderItems();
 
 const addCardPopup /* */ = new PopupWithForm(
   "#add-card-modal",
@@ -97,10 +100,11 @@ function createCard(item) {
   return card.getview();
 }
 
-function renderCard(item) {
-  const cardElement = createCard(item);
-  cardListEl.prepend(cardElement);
-}
+// function renderCard(item) {
+//   const cardElement = createCard(item);
+//   cardSection.addItem(cardElement);
+//   // cardListEl.prepend(cardElement);
+// }
 
 const editFormValidator = new FormValidator(settings, profileEditForm);
 const addFormValidator = new FormValidator(settings, addCardFormElement);
@@ -112,22 +116,18 @@ addFormValidator.enableValidation();
 //                                  Event Handlers
 //----------------------------------------------------------------------------------------
 
-function handleProfileEditSubmit() {
-  profileTitle.textContent = profileTitleInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
+function handleProfileEditSubmit(inputData) {
+  console.log(inputData);
+  profileTitle.textContent = inputData.name;
+  profileDescription.textContent = inputData.description;
   editProfilePopup.close(profileEditModal);
 }
 
 function handleAddCardFormSubmit(inputValues) {
   console.log(inputValues);
-  // const cardEl = createCard(inputValues);
-  // cardSection.addItem(cardEl);
   cardSection.addItem(
     createCard({ name: inputValues.title, link: inputValues.url })
   );
-  // const name = cardTitleInput.value;
-  // const link = cardUrlInput.value;
-  // cardSection.addItem({ name, link });
   addCardPopup.close();
   cardTitleInput.value = "";
   cardUrlInput.value = "";
