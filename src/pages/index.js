@@ -81,6 +81,13 @@ editProfilePopup.setEventListeners();
 const imagePreviewPopup = new PopupWithImage("#preview-image-modal"); //should be good
 imagePreviewPopup.setEventListeners();
 
+function handleImagePreview(cardData) {
+  /*modalImageElement.src = cardData.link;
+  modalImageElement.alt = cardData.name;*/
+  imageModalcaption.textContent = cardData.name;
+  imagePreviewPopup.open(cardData);
+}
+
 // const userInfor = new UserInfo({
 //   profileName: "#some-id",
 //   jobElement: "#some-other-id",
@@ -114,7 +121,7 @@ function handleProfileEditSubmit(inputData) {
   console.log(inputData);
   profileTitle.textContent = inputData.name;
   profileDescription.textContent = inputData.description;
-  editProfilePopup.close(profileEditModal);
+  editProfilePopup.close();
 }
 
 function handleAddCardFormSubmit(inputValues) {
@@ -153,10 +160,3 @@ addNewCardButton.addEventListener("click", () => {
 // addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
 //////////////////////////////////////////////
-
-function handleImagePreview(cardData) {
-  /*modalImageElement.src = cardData.link;
-  modalImageElement.alt = cardData.name;*/
-  imageModalcaption.textContent = cardData.name;
-  imagePreviewPopup.open(cardData);
-}
