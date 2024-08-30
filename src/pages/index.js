@@ -88,14 +88,12 @@ function handleImagePreview(cardData) {
   imagePreviewPopup.open(cardData);
 }
 
-// const userInfor = new UserInfo({
-//   profileName: "#some-id",
-//   jobElement: "#some-other-id",
-// }); // should be good
+const userInfor = new UserInfo({
+  profileName: ".profile__title",
+  jobElement: ".profile__description",
+}); // should be good
 
 //initiate  previous instances
-
-// editProfilePopup.open();
 
 // replace where is needed in the event handlesrs and listeners for all 4.
 
@@ -119,9 +117,12 @@ addFormValidator.enableValidation();
 
 function handleProfileEditSubmit(inputData) {
   console.log(inputData);
-  profileTitle.textContent = inputData.name;
-  profileDescription.textContent = inputData.description;
-  editProfilePopup.close();
+  // profileTitle.textContent = inputData.name;
+  // profileDescription.textContent = inputData.description;
+  userInfor.getUserInfo({
+    name: inputData.name,
+    description: inputData.description,
+  });
 }
 
 function handleAddCardFormSubmit(inputValues) {
