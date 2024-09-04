@@ -115,8 +115,7 @@ function handleAddCardFormSubmit(inputValues) {
     createCard({ name: inputValues.title, link: inputValues.url })
   );
   addCardPopup.close();
-  // cardTitleInput.value = "";
-  // cardUrlInput.value = "";
+  addCardFormElement.reset();
   addFormValidator.resetValidation();
 }
 
