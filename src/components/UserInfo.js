@@ -20,6 +20,4 @@ class UserInfo {
   }
 }
 
-console.log("manu");
-
 export default UserInfo;
