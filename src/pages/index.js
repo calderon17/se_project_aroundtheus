@@ -8,32 +8,32 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/Popupwithform.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/userInfo.js";
-import { data } from "autoprefixer";
+// import { data } from "autoprefixer";
 
 // //_______
 
 import {
   initialCards,
   profileEditButton,
-  profileEditModal,
-  addCardModal,
-  profileModalCloseButton,
-  profileTitle,
-  profileDescription,
+  // profileEditModal,
+  // addCardModal,
+  // profileModalCloseButton,
+  // profileTitle,
+  // profileDescription,
   profileTitleInput,
   profileDescriptionInput,
   addCardModalCloseButton,
   addNewCardButton,
   profileEditForm,
   addCardFormElement,
-  cardTitleInput,
-  cardUrlInput,
-  cardListEl,
-  cardImageEL,
-  Template,
-  modalImageElement,
-  imageModalcaption,
-  preImgModalCloseButton,
+  // cardTitleInput,
+  // cardUrlInput,
+  // cardListEl,
+  // cardImageEL,
+  // Template,
+  // modalImageElement,
+  // imageModalcaption,
+  // preImgModalCloseButton,
   cardSelector,
   settings,
 } from "../utils/constants.js";
@@ -56,7 +56,7 @@ const cardSection = new Section(
 
 cardSection.renderItems();
 
-const addCardPopup /* */ = new PopupWithForm(
+const addCardPopup = new PopupWithForm(
   "#add-card-modal",
   handleAddCardFormSubmit
 );
@@ -99,10 +99,6 @@ function handleImagePreview(cardData) {
 //----------------------------------------------------------------------------------------
 
 function handleProfileEditSubmit(inputData) {
-  // console.log(inputData);
-  // profileTitle.textContent = inputData.name;
-  // profileDescription.textContent = inputData.description;
-
   userInfor.setUserInfo({
     title: inputData.name,
     description: inputData.description,
