@@ -8,9 +8,88 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/Popupwithform.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/userInfo.js";
+import PopupConfirmDelete from "../components/PopupConfrimDelete.js";
 // import { data } from "autoprefixer";
 
 // //_______
+
+//Project 9//
+
+//request to the /cards endpoint looks like:
+
+// fetch("https://around-api.en.tripleten-services.com/v1/cards", {
+//   headers: {
+//     authorization: "c801e776-9008-430b-a7ca-bcf7d2aaaf7f",
+//   },
+// })
+//   .then((res) => res.json())
+//   .then((result) => {
+//     console.log(result);
+//   });
+
+//---------------------------------------------------------------
+
+class Api {
+  constructor(options) {
+    // constructor body
+  }
+
+  getInitialCards() {
+    return fetch("https://around-api.en.tripleten-services.com/v1", {
+      headers: {
+        authorization: "c801e776-9008-430b-a7ca-bcf7d2aaaf7f",
+      },
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      // if the server returns an error, reject the promise
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
+
+  // other methods for working with the API
+}
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "c801e776-9008-430b-a7ca-bcf7d2aaaf7f",
+    "Content-Type": "application/json",
+  },
+});
+
+//Process errors inside catch()
+
+api
+  .getInitialCards()
+  .then((result) => {
+    // process the result
+  })
+  .catch((err) => {
+    console.error(err); // log the error to the console
+  });
+
+//-View requests in the Network panel.
+//-Cards should be rendered after the user information is received from the server.
+
+//1. Loading user information from the server
+
+fetch("https://around-api.en.tripleten-services.com/v1/users/me", {
+  method: "GET",
+  about: "Placeholder description",
+  avatar:
+    "https://practicum-content.s3.amazonaws.com/resources/default-avatar_1704458546.png",
+  name: "Placeholder name",
+  _id: "c801e776-9008-430b-a7ca-bcf7d2aaaf7f",
+  // the about, avatart and name properties go to the apropiate headers, which headers?
+});
+
+//2. Loading cards from the server
+
+//
+//-------------------------------------------------------------------
+//
 
 import {
   initialCards,
@@ -22,7 +101,7 @@ import {
   // profileDescription,
   profileTitleInput,
   profileDescriptionInput,
-  addCardModalCloseButton,
+  // addCardModalCloseButton,
   addNewCardButton,
   profileEditForm,
   addCardFormElement,
@@ -76,11 +155,26 @@ const userInfor = new UserInfo({
   jobElement: ".profile__description",
 });
 
+const confirmDelete = new PopupConfirmDelete("#delete-image-modal");
+confirmDelete.open();
 //----------------------------------------------------------------------------------------
 //                                     Functions
 //----------------------------------------------------------------------------------------
 function createCard(item) {
-  const card = new Card(item, cardSelector, handleImagePreview);
+  const card = new Card(
+    item,
+    cardSelector,
+    handleImagePreview,
+    {
+      _id: cardData._id,
+    },
+    (cardId, card) => {
+      deleteCardModal(cardId, card); //here
+    },
+    (cardId, isLiked, cardElement) => {
+      handleLikeClick(cardId, isLiked, cardElement, card);
+    }
+  );
   return card.getview();
 }
 
@@ -92,6 +186,21 @@ addFormValidator.enableValidation();
 
 function handleImagePreview(cardData) {
   imagePreviewPopup.open(cardData);
+}
+// Project 9
+
+function deleteCardModal(cardId, card) {
+  confirmDelete.handleAddCardFormSubmit(() => {
+    api
+      .handleDeleteCard(cardId)
+      .then(() => {
+        card.handleDeleteCard();
+        confirmDelete.close();
+      })
+      .catch(console.error);
+  });
+
+  confirmDelete.open();
 }
 
 //----------------------------------------------------------------------------------------

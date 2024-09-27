@@ -3,11 +3,18 @@
 //----------------------------------------------------------------------------------------
 
 export default class Card {
-  constructor({ name, link }, cardSelector, handleImagePreview) {
+  constructor(
+    { name, link, _id },
+    cardSelector,
+    handleImagePreview,
+    deleteCardModal
+  ) {
     this.name = name;
     this.link = link;
+    this._id = _id;
     this._cardSelector = cardSelector;
     this._handleImagePreview = handleImagePreview;
+    this._deleteCardModal = deleteCardModal;
   }
 
   //------------------------------------------------------------
@@ -20,6 +27,16 @@ export default class Card {
 
   //------------------------------------------------------------
   _setEventListeners() {
+    this._cardLikeButton.addEventListener("click", () => {
+      this._handleLikeIcon();
+    });
+
+    this._cardElement
+      .querySelector(".cards__list")
+      .addEventListener("click", () => {
+        this._deleteCardModal(this._id, this); //using the delete function
+      });
+
     this._likeButton.addEventListener("click", this._handleLikeIcon);
 
     this._deleteCard.addEventListener("click", this._handleDeleteCard);
