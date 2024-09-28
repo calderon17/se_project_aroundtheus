@@ -156,7 +156,6 @@ const userInfor = new UserInfo({
 });
 
 const confirmDelete = new PopupConfirmDelete("#delete-image-modal");
-confirmDelete.open();
 //----------------------------------------------------------------------------------------
 //                                     Functions
 //----------------------------------------------------------------------------------------
@@ -165,14 +164,11 @@ function createCard(item) {
     item,
     cardSelector,
     handleImagePreview,
-    {
-      _id: cardData._id,
-    },
     (cardId, card) => {
       deleteCardModal(cardId, card); //here
     },
     (cardId, isLiked, cardElement) => {
-      handleLikeClick(cardId, isLiked, cardElement, card);
+      handleLikeIcon(cardId, isLiked, cardElement, card);
     }
   );
   return card.getview();
@@ -190,7 +186,7 @@ function handleImagePreview(cardData) {
 // Project 9
 
 function deleteCardModal(cardId, card) {
-  confirmDelete.handleAddCardFormSubmit(() => {
+  confirmDelete.setSubmitFunction(() => {
     api
       .handleDeleteCard(cardId)
       .then(() => {
@@ -199,7 +195,6 @@ function deleteCardModal(cardId, card) {
       })
       .catch(console.error);
   });
-
   confirmDelete.open();
 }
 
