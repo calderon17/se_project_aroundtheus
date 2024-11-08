@@ -13,42 +13,11 @@ export default class PopupConfirmDelete extends Popup {
 
   setEventListeners() {
     this._formElement.addEventListener("submit", (event) => {
-      event.preventDefault(); // Prevents the form from reloading the page or submitting normally
+      event.preventDefault();
       if (this._submitFunction) {
-        this._submitFunction(); // Calls the provided delete function
+        this._submitFunction();
       }
     });
-    super.setEventListeners(); // Calls the parent method to set up other event listeners
+    super.setEventListeners();
   }
 }
-
-///////////////////////////////////////////////
-
-//   setEventListeners() {
-//     this._deleteCardModal
-//       .querySelector(".modal__form")
-//       .addEventListener("submit", () => {
-//         this._submitFunction();
-//       });
-//     super.setEventListeners();
-//   }
-// }
-
-// export default PopupConfirmDelete;
-
-//////////////////////////////////////////////////////////
-
-// import Popup from "./Popup.js";
-
-// class PopupConfirmDelete extends Popup {
-//   constructor(PopupSelector) {
-//     super({ PopupSelector });
-//     this._deleteCardModal = this._popupElement;
-//   }
-//   _setEventListeners() {
-//     this._deleteCard.addEventListener("click");
-//     super.setEventListeners();
-//   }
-// }
-
-// export default PopupConfirmDelete;

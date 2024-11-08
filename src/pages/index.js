@@ -91,7 +91,7 @@ const confirmDelete = new PopupConfirmDelete("#delete-image-modal");
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "c801e776-9008-430b-a7ca-bcf7d2aaaf7f", // Your special token
+    authorization: "c801e776-9008-430b-a7ca-bcf7d2aaaf7f", // my special token
     "Content-Type": "application/json",
   },
 });
@@ -115,7 +115,7 @@ function createCard(item) {
     cardSelector,
     handleImagePreview,
     (cardId, card) => {
-      deleteCardModal(cardId, card); //here
+      deleteCardModal(cardId, card);
     },
     (cardId, isLiked, cardElement) => {
       handleLikeIcon(cardId, isLiked, cardElement, card);
@@ -138,32 +138,16 @@ function handleImagePreview(cardData) {
 function deleteCardModal(cardId, card) {
   confirmDelete.setSubmitFunction(() => {
     api
-      .handleDeleteCard(cardId) // Use the cardId passed into this function
+      .handleDeleteCard(cardId)
       .then(() => {
-        card.handleDeleteCard(); // This should remove the card element from the DOM
-        confirmDelete.close(); // Close the delete confirmation modal
+        card.handleDeleteCard();
+        confirmDelete.close();
       })
       .catch((err) => console.error("Error deleting card:", err));
   });
 
-  confirmDelete.open(); // Open the delete confirmation modal
+  confirmDelete.open();
 }
-
-////////////////////////////////////////
-
-// function deleteCardModal(cardId, card) {
-//   confirmDelete.setSubmitFunction(() => {
-//     api
-//       .handleDeleteCard(cardId)
-//       .then(() => {
-//         card.handleDeleteCard();
-//         confirmDelete.close();
-//       })
-//       .catch((err) => console.error("Error deleting card:", err));
-//   });
-
-//   confirmDelete.open();
-// }
 
 //----------------------------------------------------------------------------------------
 //                                  Event Handlers
