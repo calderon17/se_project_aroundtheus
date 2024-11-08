@@ -29,9 +29,11 @@ export default class Card {
   _setEventListeners() {
     this._likeButton.addEventListener("click", this._handleLikeIcon);
 
-    this._deleteCard.addEventListener("click", this._deleteCardModal);
+    this._deleteCard.addEventListener("click", () =>
+      this._deleteCardModal(this._id, this)
+    );
 
-    this._confrimDeleteButton.addEventListener("click", this._handleDeleteCard);
+    // this._confrimDeleteButton.addEventListener("click", this._handleDeleteCard);
 
     // this._deleteCard.addEventListener("click", yes__delete_button);
 
@@ -58,9 +60,9 @@ export default class Card {
     this._likeButton = this._cardElement.querySelector(".card__like-button");
     this._cardImage = this._cardElement.querySelector(".card__image");
     this._deleteCard = this._cardElement.querySelector(".card__remove-button");
-    this._confrimDeleteButton = this._cardElement.querySelector(
-      ".yes__delete-button"
-    );
+    // this._confrimDeleteButton = this._cardElement.querySelector(
+    //   ".yes__delete-button"
+    // );
 
     this._cardImage.src = this.link;
     this._cardImage.alt = this.name;
