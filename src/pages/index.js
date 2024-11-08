@@ -82,9 +82,11 @@ const userInfor = new UserInfo({
   jobElement: ".profile__description",
 });
 
-//Project 9
+// Instantiating  PopupConfirmDelete project 9
 
 const confirmDelete = new PopupConfirmDelete("#delete-image-modal");
+
+//Project 9
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -136,15 +138,32 @@ function handleImagePreview(cardData) {
 function deleteCardModal(cardId, card) {
   confirmDelete.setSubmitFunction(() => {
     api
-      .handleDeleteCard(cardId)
+      .handleDeleteCard(cardId) // Use the cardId passed into this function
       .then(() => {
-        card.handleDeleteCard();
-        confirmDelete.close();
+        card.handleDeleteCard(); // This should remove the card element from the DOM
+        confirmDelete.close(); // Close the delete confirmation modal
       })
-      .catch(console.error);
+      .catch((err) => console.error("Error deleting card:", err));
   });
-  confirmDelete.open();
+
+  confirmDelete.open(); // Open the delete confirmation modal
 }
+
+////////////////////////////////////////
+
+// function deleteCardModal(cardId, card) {
+//   confirmDelete.setSubmitFunction(() => {
+//     api
+//       .handleDeleteCard(cardId)
+//       .then(() => {
+//         card.handleDeleteCard();
+//         confirmDelete.close();
+//       })
+//       .catch((err) => console.error("Error deleting card:", err));
+//   });
+
+//   confirmDelete.open();
+// }
 
 //----------------------------------------------------------------------------------------
 //                                  Event Handlers
