@@ -86,6 +86,8 @@ const userInfor = new UserInfo({
 
 const confirmDelete = new PopupConfirmDelete("#delete-image-modal");
 
+confirmDelete.setEventListeners();
+
 //Project 9
 
 const api = new Api({
