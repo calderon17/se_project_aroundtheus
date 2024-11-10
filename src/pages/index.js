@@ -60,7 +60,7 @@ const cardSection = new Section(
   ".cards__list"
 );
 
-cardSection.renderItems();
+// cardSection.renderItems();
 
 const addCardPopup = new PopupWithForm(
   "#add-card-modal",
@@ -102,7 +102,9 @@ const api = new Api({
 api
   .getInitialCards()
   .then((data) => {
-    console.log("Fetched Cards:", data);
+    cardSection.renderItems(data);
+    console.log(data);
+    // console.log("Fetched Cards:", data);
   })
   .catch((err) => {
     console.error(err);

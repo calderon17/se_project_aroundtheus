@@ -8,9 +8,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
       headers: this._headers,
-    })
-      .then((res) => this._checkResponse(res))
-      .catch((err) => console.log("Error fetching cards:", err));
+    }).then((res) => this._checkResponse(res));
   }
 
   addCard(data) {
@@ -18,9 +16,7 @@ class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(data),
-    })
-      .then((res) => this._checkResponse(res))
-      .catch((err) => console.log("Error adding card:", err));
+    }).then((res) => this._checkResponse(res));
   }
 
   handleDeleteCard(cardId) {
