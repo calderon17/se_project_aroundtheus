@@ -165,14 +165,28 @@ function handleProfileEditSubmit(inputData) {
 }
 
 function handleAddCardFormSubmit(inputValues) {
-  console.log(inputValues);
-  cardSection.addItem(
-    createCard({ name: inputValues.title, link: inputValues.url })
-  );
-  addCardPopup.close();
-  addCardFormElement.reset();
-  addFormValidator.resetValidation();
+  api
+    .addCard({
+      name: inputValues.title,
+      link: inputValues.url,
+    })
+    .then((cardData) => {
+      cardSection.addItem(createCard(cardData));
+      addCardPopup.close();
+      addCardFormElement.reset();
+      addFormValidator.resetValidation();
+    })
+    .catch((err) => console.error("Error adding card:", err));
 }
+
+// function handleAddCardFormSubmit(inputValues) {
+//   cardSection.addItem(
+//     createCard({ name: inputValues.title, link: inputValues.url })
+//   );
+//   addCardPopup.close();
+//   addCardFormElement.reset();
+//   addFormValidator.resetValidation();
+// }
 
 //----------------------------------------------------------------------------------------
 //                                 Events listeners
