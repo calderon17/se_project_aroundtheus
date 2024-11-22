@@ -12,7 +12,7 @@ class UserInfo {
   }
 
   setUserInfo(userInf) {
-    this._profileName.textContent = userInf.title;
+    this._profileName.textContent = userInf.name;
     this._jobElement.textContent = userInf.description;
   }
 

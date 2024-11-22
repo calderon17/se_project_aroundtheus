@@ -49,9 +49,19 @@ console.log(profileEditButton);
 
 // instances
 
+// const cardSection = new Section(
+//   {
+//     items: initialCards,
+//     renderer: (cardData) => {
+//       const cardElement = createCard(cardData);
+//       cardSection.addItem(cardElement);
+//     },
+//   },
+//   ".cards__list"
+// );
+
 const cardSection = new Section(
   {
-    items: initialCards,
     renderer: (cardData) => {
       const cardElement = createCard(cardData);
       cardSection.addItem(cardElement);
@@ -114,7 +124,7 @@ api
   .getUserInfoAndCards()
   .then(({ userInfo, cards }) => {
     userInfor.setUserInfo({
-      title: userInfo.name,
+      name: userInfo.name,
       description: userInfo.about,
       avatar: userInfo.avatar,
     });
@@ -172,10 +182,15 @@ function deleteCardModal(cardId, card) {
 //----------------------------------------------------------------------------------------
 
 function handleProfileEditSubmit(inputData) {
-  userInfor.setUserInfo({
-    title: inputData.name,
-    description: inputData.description,
-  });
+  api
+    .updateUserInfo({
+      name: inputData.name,
+      about: inputData.description,
+    })
+    .then(() => {
+      userInfor.setUserInfo(inputData);
+      userInfor.updateAvatarImage(inputData);
+    });
 }
 
 function handleAddCardFormSubmit(inputValues) {
