@@ -80,6 +80,7 @@ imagePreviewPopup.setEventListeners();
 const userInfor = new UserInfo({
   profileName: ".profile__title",
   jobElement: ".profile__description",
+  avatarElement: ".profile__image",
 });
 
 // Instantiating  PopupConfirmDelete project 9
@@ -98,16 +99,29 @@ const api = new Api({
   },
 });
 
-// Example of using the getInitialCards method
+// api
+//   .getInitialCards()
+//   .then((data) => {
+//     cardSection.renderItems(data);
+//     console.log(data);
+//     // console.log("Fetched Cards:", data);
+//   })
+//   .catch((err) => {
+//     console.error(err);
+//   });
+
 api
-  .getInitialCards()
-  .then((data) => {
-    cardSection.renderItems(data);
-    console.log(data);
-    // console.log("Fetched Cards:", data);
+  .getUserInfoAndCards()
+  .then(({ userInfo, cards }) => {
+    userInfor.setUserInfo({
+      title: userInfo.name,
+      description: userInfo.about,
+      avatar: userInfo.avatar,
+    });
+    cardSection.renderItems(cards);
   })
   .catch((err) => {
-    console.error(err);
+    console.error("Failed to load user information or cards:", err);
   });
 
 //----------------------------------------------------------------------------------------
@@ -144,7 +158,7 @@ function deleteCardModal(cardId, card) {
     api
       .handleDeleteCard(cardId)
       .then(() => {
-        card.handleDeleteCard();
+        card._handleDeleteCard();
         confirmDelete.close();
       })
       .catch((err) => console.error("Error deleting card:", err));
