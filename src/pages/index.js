@@ -90,7 +90,7 @@ imagePreviewPopup.setEventListeners();
 const userInfor = new UserInfo({
   profileName: ".profile__title",
   jobElement: ".profile__description",
-  avatarElement: ".profile__image",
+  avatarImage: ".profile__image",
 });
 
 // Instantiating  PopupConfirmDelete project 9
@@ -126,8 +126,8 @@ api
     userInfor.setUserInfo({
       name: userInfo.name,
       description: userInfo.about,
-      avatar: userInfo.avatar,
     });
+    userInfor.updateAvatarImage({ avatar: userInfo.avatar });
     cardSection.renderItems(cards);
   })
   .catch((err) => {
@@ -144,13 +144,25 @@ function createCard(item) {
     handleImagePreview,
     (cardId, card) => {
       deleteCardModal(cardId, card);
-    },
-    (cardId, isLiked, cardElement) => {
-      handleLikeIcon(cardId, isLiked, cardElement, card);
     }
   );
   return card.getview();
 }
+
+// function createCard(item) {
+//   const card = new Card(
+//     item,
+//     cardSelector,
+//     handleImagePreview,
+//     (cardId, card) => {
+//       deleteCardModal(cardId, card);
+//     },
+//     (cardId, isLiked, cardElement) => {
+//       handleLikeIcon(cardId, isLiked, cardElement, card);
+//     }
+//   );
+//   return card.getview();
+// }
 
 const editFormValidator = new FormValidator(settings, profileEditForm);
 const addFormValidator = new FormValidator(settings, addCardFormElement);

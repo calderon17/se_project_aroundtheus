@@ -48,9 +48,27 @@ export default class Card {
     this._cardElement = null;
   };
   //------------------------------------------------------------
-  _handleLikeIcon = () => {
-    this._likeButton.classList.toggle("card__like-button_active");
-  };
+  // _handleLikeIcon = () => {
+  //   this._likeButton.classList.toggle("card__like-button_active");
+  // };
+
+  _handleLikeIcon() {
+    if (this._likeButton.classList.contains("card__like-button_active")) {
+      api
+        .dislikeCard(this._id)
+        .then(() => {
+          this._likeButton.classList.toggle("card__like-button_active");
+        })
+        .catch((err) => console.error("Error removing like from card:", err));
+    } else {
+      api
+        .likeCard(this._id)
+        .then(() => {
+          this._likeButton.classList.toggle("card__like-button_active");
+        })
+        .catch((err) => console.error("Error adding like to card:", err));
+    }
+  }
 
   //------------------------------------------------------------
   getview() {
