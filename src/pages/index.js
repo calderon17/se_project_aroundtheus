@@ -137,18 +137,6 @@ api
 //----------------------------------------------------------------------------------------
 //                                     Functions
 //----------------------------------------------------------------------------------------
-function createCard(item) {
-  const card = new Card(
-    item,
-    cardSelector,
-    handleImagePreview,
-    (cardId, card) => {
-      deleteCardModal(cardId, card);
-    }
-  );
-  return card.getview();
-}
-
 // function createCard(item) {
 //   const card = new Card(
 //     item,
@@ -156,13 +144,44 @@ function createCard(item) {
 //     handleImagePreview,
 //     (cardId, card) => {
 //       deleteCardModal(cardId, card);
-//     },
-//     (cardId, isLiked, cardElement) => {
-//       handleLikeIcon(cardId, isLiked, cardElement, card);
 //     }
 //   );
 //   return card.getview();
 // }
+
+function createCard(item) {
+  const card = new Card(
+    item,
+    cardSelector,
+    handleImagePreview,
+    handleCardLike,
+    (cardId, card) => {
+      deleteCardModal(cardId, card);
+    },
+    (cardId, isLiked, cardElement) => {
+      handleLikeIcon(cardId, isLiked, cardElement, card);
+    }
+  );
+  return card.getview();
+}
+
+function handleCardLike(card) {
+  if (card._isLiked) {
+    api
+      .likeCard(this._id)
+      .then(() => {
+        this._likeButton.classList.toggle("card__like-button_active");
+      })
+      .catch((err) => console.error("Error adding like to card:", err));
+  } else {
+    api
+      .dislikeCard(this._id)
+      .then(() => {
+        this._likeButton.classList.toggle("card__like-button_active");
+      })
+      .catch((err) => console.error("Error removing like from card:", err));
+  }
+}
 
 const editFormValidator = new FormValidator(settings, profileEditForm);
 const addFormValidator = new FormValidator(settings, addCardFormElement);

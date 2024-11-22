@@ -4,7 +4,7 @@
 
 export default class Card {
   constructor(
-    { name, link, _id },
+    { name, link, _id, handleCardLike },
     cardSelector,
     handleImagePreview,
     deleteCardModal
@@ -15,7 +15,12 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._handleImagePreview = handleImagePreview;
     this._deleteCardModal = deleteCardModal;
+    this._handleCardLike = handleCardLike;
   }
+
+  // one function is pass it from index to card.js in constructor , then saves it in card.js then eventlistener goes to index.js
+
+  // one function updates the apearence of the like button
 
   //------------------------------------------------------------
   _getTemplate() {
@@ -37,6 +42,10 @@ export default class Card {
 
     // this._deleteCard.addEventListener("click", yes__delete_button);
 
+    this._likeButton.addEventListener("click", () => {
+      this._handleCardLike();
+    });
+
     this._cardImage.addEventListener("click", () => {
       this._handleImagePreview(this);
     });
@@ -48,27 +57,27 @@ export default class Card {
     this._cardElement = null;
   };
   //------------------------------------------------------------
-  // _handleLikeIcon = () => {
-  //   this._likeButton.classList.toggle("card__like-button_active");
-  // };
+  _handleLikeIcon = () => {
+    this._likeButton.classList.toggle("card__like-button_active");
+  };
 
-  _handleLikeIcon() {
-    if (this._likeButton.classList.contains("card__like-button_active")) {
-      api
-        .dislikeCard(this._id)
-        .then(() => {
-          this._likeButton.classList.toggle("card__like-button_active");
-        })
-        .catch((err) => console.error("Error removing like from card:", err));
-    } else {
-      api
-        .likeCard(this._id)
-        .then(() => {
-          this._likeButton.classList.toggle("card__like-button_active");
-        })
-        .catch((err) => console.error("Error adding like to card:", err));
-    }
-  }
+  // _handleLikeIcon() {
+  //   if (this._likeButton.classList.contains("card__like-button_active")) {
+  //     api
+  //       .dislikeCard(this._id)
+  //       .then(() => {
+  //         this._likeButton.classList.toggle("card__like-button_active");
+  //       })
+  //       .catch((err) => console.error("Error removing like from card:", err));
+  //   } else {
+  //     api
+  //       .likeCard(this._id)
+  //       .then(() => {
+  //         this._likeButton.classList.toggle("card__like-button_active");
+  //       })
+  //       .catch((err) => console.error("Error adding like to card:", err));
+  //   }
+  // }
 
   //------------------------------------------------------------
   getview() {
