@@ -99,7 +99,7 @@ const confirmDelete = new PopupConfirmDelete("#delete-image-modal");
 
 confirmDelete.setEventListeners();
 
-//Project 9
+//Project 9 /////////////////////////////////////////////////////////////////////
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -148,14 +148,29 @@ avatarEditButton.addEventListener("click", () => {
 
 // // Function to handle avatar update
 function handleAvatarSubmit(inputData) {
+  const saveButton = document.querySelector(".modal__button");
+  renderSaving(true, saveButton);
   api
     .updateUserAvatar({ avatar: inputData.avatar })
     .then((userData) => {
       userInfor.updateAvatarImage({ avatar: userData.avatar });
       avatarEditModal.close();
     })
-    .catch((err) => console.error("Error updating avatar:", err));
+    .catch((err) => console.error("Error updating avatar:", err))
+    .finally(() => {
+      renderSaving(false, saveButton);
+    });
 }
+
+function renderSaving(isLoading, buttonElement, defaultText = "Save") {
+  if (isLoading) {
+    buttonElement.textContent = "Saving...";
+  } else {
+    buttonElement.textContent = defaultText;
+  }
+}
+
+//////////////////////////////////// end of project 9 ////////////////////////////////////////////
 
 // //----------------------------------------------------------------------------------------
 //                                     Functions
@@ -240,6 +255,9 @@ function deleteCardModal(cardId, card) {
 //----------------------------------------------------------------------------------------
 
 function handleProfileEditSubmit(inputData) {
+  const saveButton = document.querySelector(".modal__button");
+  renderSaving(true, saveButton);
+
   api
     .updateUserInfo({
       name: inputData.name,
@@ -248,10 +266,15 @@ function handleProfileEditSubmit(inputData) {
     .then(() => {
       userInfor.setUserInfo(inputData);
       userInfor.updateAvatarImage(inputData);
+    })
+    .finally(() => {
+      renderSaving(false, saveButton); // Revert button text to "Save"
     });
 }
 
 function handleAddCardFormSubmit(inputValues) {
+  const saveButton = document.querySelector(".modal__button");
+  renderSaving(true, saveButton);
   api
     .addCard({
       name: inputValues.title,
@@ -263,7 +286,10 @@ function handleAddCardFormSubmit(inputValues) {
       addCardFormElement.reset();
       addFormValidator.resetValidation();
     })
-    .catch((err) => console.error("Error adding card:", err));
+    .catch((err) => console.error("Error adding card:", err))
+    .finally(() => {
+      renderSaving(false, saveButton);
+    });
 }
 
 //----------------------------------------------------------------------------------------

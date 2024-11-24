@@ -108,6 +108,8 @@
   background-color: #fff;
   color: grey;
   border: 1px solid grey;
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .modal__button_disabled:hover {
