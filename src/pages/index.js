@@ -134,7 +134,30 @@ api
     console.error("Failed to load user information or cards:", err);
   });
 
-//----------------------------------------------------------------------------------------
+const avatarEditButton = document.querySelector(".profile__edit-avatar-button");
+const avatarEditModal = new PopupWithForm(
+  "#avatar-edit-modal",
+  handleAvatarSubmit
+);
+avatarEditModal.setEventListeners();
+
+// // Open avatar edit popup
+avatarEditButton.addEventListener("click", () => {
+  avatarEditModal.open();
+});
+
+// // Function to handle avatar update
+function handleAvatarSubmit(inputData) {
+  api
+    .updateUserAvatar({ avatar: inputData.avatar })
+    .then((userData) => {
+      userInfor.updateAvatarImage({ avatar: userData.avatar });
+      avatarEditModal.close();
+    })
+    .catch((err) => console.error("Error updating avatar:", err));
+}
+
+// //----------------------------------------------------------------------------------------
 //                                     Functions
 //----------------------------------------------------------------------------------------
 function createCard(item) {
@@ -242,15 +265,6 @@ function handleAddCardFormSubmit(inputValues) {
     })
     .catch((err) => console.error("Error adding card:", err));
 }
-
-// function handleAddCardFormSubmit(inputValues) {
-//   cardSection.addItem(
-//     createCard({ name: inputValues.title, link: inputValues.url })
-//   );
-//   addCardPopup.close();
-//   addCardFormElement.reset();
-//   addFormValidator.resetValidation();
-// }
 
 //----------------------------------------------------------------------------------------
 //                                 Events listeners
