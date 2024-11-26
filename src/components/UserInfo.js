@@ -1,8 +1,7 @@
 class UserInfo {
-  constructor({ profileName, jobElement, avatarImage }) {
+  constructor({ profileName, jobElement }) {
     this._profileName = document.querySelector(profileName);
     this._jobElement = document.querySelector(jobElement);
-    this._avatarImage = document.querySelector(avatarImage);
   }
   getUserInfo() {
     return {
@@ -12,14 +11,8 @@ class UserInfo {
   }
 
   setUserInfo(userInf) {
-    this._profileName.textContent = userInf.name;
+    this._profileName.textContent = userInf.title;
     this._jobElement.textContent = userInf.description;
-  }
-
-  updateAvatarImage(image) {
-    if (image.avatar) {
-      this._avatarImage.src = image.avatar;
-    }
   }
 }
 
