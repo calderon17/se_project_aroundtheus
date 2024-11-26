@@ -78,38 +78,6 @@
   margin: 0 24px 0 0;
 }
 
-.profile__image-container {
-  position: relative;
-  display: inline-block;
-}
-
-.profile__edit-avatar-button {
-  position: absolute;
-  right: 0;
-  /* background-color: aqua; */
-  border: none;
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.3s;
-  height: 120px;
-  width: 120px;
-  border-radius: 50%;
-  margin: 0 24px 4px 0;
-  /* object-fit: cover; */
-  /* background-position: center; */
-  /* background-size: cover; */
-  /* width: 40px;
-  height: 40px; */
-  /* background: url('<%=require("./images/edit-icon.svg")%>') no-repeat center; */
-  /* bottom: 0; */
-}
-
-.profile__image-container:hover .profile__edit-avatar-button {
-  opacity: 1;
-  background-color: #000;
-  opacity: 0.8;
-}
-
 @media screen and (max-width: 880px) {
   .profile__title {
     font-size: 30px;
@@ -168,9 +136,5 @@
     height: 18px;
     flex-shrink: 0;
     border: 1px solid #fff;
-  }
-
-  .profile__edit-avatar-button {
-    margin: 0 0 30px 0;
   }
 }

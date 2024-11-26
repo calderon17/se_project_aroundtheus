@@ -108,8 +108,6 @@
   background-color: #fff;
   color: grey;
   border: 1px solid grey;
-  opacity: 0.5;
-  cursor: not-allowed;
 }
 
 .modal__button_disabled:hover {
@@ -179,14 +177,13 @@
     width: 238px;
     font-size: 18px;
     line-height: 21.78px;
-    margin: 0 0 10px 0;
   }
 
   .modal__input {
     font-size: 14px;
     width: 238px;
     height: 27px;
-    margin: 20px 0 0;
+    margin: 75px 0 0;
   }
 
   .modal__button {
