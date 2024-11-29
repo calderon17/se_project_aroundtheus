@@ -1,11 +1,10 @@
 class UserInfo {
-  constructor({ profileName, jobElement }) {
+  constructor({ profileName, jobElement, avatarImage }) {
     this._profileName = document.querySelector(profileName);
     this._jobElement = document.querySelector(jobElement);
+    this._avatarImage = document.querySelector(avatarImage);
   }
-  //("#profile-description-input
   getUserInfo() {
-    // display the user data in the open form.
     return {
       title: this._profileName.textContent,
       description: this._jobElement.textContent,
@@ -13,10 +12,14 @@ class UserInfo {
   }
 
   setUserInfo(userInf) {
-    // takes new user data and adds it to the page
-
-    this._profileName.textContent = userInf.title;
+    this._profileName.textContent = userInf.name;
     this._jobElement.textContent = userInf.description;
+  }
+
+  updateAvatarImage(image) {
+    if (image.avatar) {
+      this._avatarImage.src = image.avatar;
+    }
   }
 }
 
