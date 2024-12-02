@@ -127,6 +127,32 @@
           </form>
         </div>
       </div>
+
+      <!-- Avatar Edit Modal -->
+      <div class="modal" id="avatar-edit-modal">
+        <div class="modal__container">
+          <button
+            type="button"
+            class="modal__close"
+            id="avatar-modal-close"
+          ></button>
+          <h2 class="modal__heading">Change Profile Picture</h2>
+          <form class="modal__form" id="modal-form">
+            <label class="modal__label">
+              <input
+                type="url"
+                class="modal__input modal__input_type_url"
+                name="avatar"
+                placeholder="Image URL"
+                id="avatar-url-input"
+                required
+              />
+              <span class="modal_error" id="avatar-url-input-error"></span>
+            </label>
+            <button type="submit" class="button modal__button">Save</button>
+          </form>
+        </div>
+      </div>
       <!-- Image preview modal -->
 
       <div class="modal" id="preview-image-modal">
@@ -152,32 +178,6 @@
             </button>
           </form>
         </div>
-      </div>
-    </div>
-
-    <!-- Avatar Edit Modal -->
-    <div class="modal" id="avatar-edit-modal">
-      <div class="modal__container">
-        <button
-          type="button"
-          class="modal__close"
-          id="avatar-modal-close"
-        ></button>
-        <h2 class="modal__heading">Change Profile Picture</h2>
-        <form class="modal__form" id="avatar-modal-form">
-          <label class="modal__label">
-            <input
-              type="url"
-              class="modal__input modal__input_type_url"
-              name="avatar"
-              placeholder="Image URL"
-              id="avatar-url-input"
-              required
-            />
-            <span class="modal_error" id="avatar-url-input-error"></span>
-          </label>
-          <button type="submit" class="button modal__button">Save</button>
-        </form>
       </div>
     </div>
 

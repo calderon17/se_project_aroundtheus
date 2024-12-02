@@ -19,7 +19,7 @@ import Api from "../components/Api.js";
 //
 
 import {
-  initialCards,
+  // initialCards,
   profileEditButton,
   // profileEditModal,
   // addCardModal,
@@ -42,23 +42,8 @@ import {
   // preImgModalCloseButton,
   cardSelector,
   settings,
+  avatarFormElement,
 } from "../utils/constants.js";
-
-console.log(initialCards);
-console.log(profileEditButton);
-
-// instances
-
-// const cardSection = new Section(
-//   {
-//     items: initialCards,
-//     renderer: (cardData) => {
-//       const cardElement = createCard(cardData);
-//       cardSection.addItem(cardElement);
-//     },
-//   },
-//   ".cards__list"
-// );
 
 const cardSection = new Section(
   {
@@ -227,9 +212,11 @@ function handleCardLike(card) {
 
 const editFormValidator = new FormValidator(settings, profileEditForm);
 const addFormValidator = new FormValidator(settings, addCardFormElement);
+const avatarFormValidator = new FormValidator(settings, avatarFormElement);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
 
 function handleImagePreview(cardData) {
   imagePreviewPopup.open(cardData);
