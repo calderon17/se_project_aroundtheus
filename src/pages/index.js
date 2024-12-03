@@ -252,7 +252,11 @@ function handleProfileEditSubmit(inputData) {
     })
     .then(() => {
       userInfor.setUserInfo(inputData);
-      userInfor.updateAvatarImage(inputData);
+      // userInfor.updateAvatarImage(inputData);
+      editProfilePopup.close();
+    })
+    .catch((err) => {
+      console.error("Error updating profile:", err);
     })
     .finally(() => {
       renderSaving(false, saveButton); // Revert button text to "Save"
