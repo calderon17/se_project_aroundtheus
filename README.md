@@ -27,3 +27,8 @@ https://calderon17.github.io/se_project_aroundtheus/
 **link to video brief**
 
 https://www.loom.com/share/e8dd95adf8c4465fa5b79bd712dda191?sid=f2fb1c1f-85a2-4220-ba85-37081c7080b6
+
+
+**link to Youtube video of Project Demo**
+
+https://youtu.be/UboUE9FCt-4
