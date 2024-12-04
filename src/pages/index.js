@@ -20,18 +20,14 @@ import Api from "../components/Api.js";
 
 import {
   // initialCards,
-  profileEditButton,
+  // profileEditModal,
   // profileEditModal,
   // addCardModal,
+  // avatarEditModal,
   // profileModalCloseButton,
   // profileTitle,
   // profileDescription,
-  profileTitleInput,
-  profileDescriptionInput,
   // addCardModalCloseButton,
-  addNewCardButton,
-  profileEditForm,
-  addCardFormElement,
   // cardTitleInput,
   // cardUrlInput,
   // cardListEl,
@@ -40,9 +36,18 @@ import {
   // modalImageElement,
   // imageModalcaption,
   // preImgModalCloseButton,
+  addNewCardButton,
+  profileEditForm,
+  addCardFormElement,
+  profileTitleInput,
+  profileDescriptionInput,
+  profileEditButton,
   cardSelector,
   settings,
   avatarFormElement,
+  profileEditSaveButton,
+  avatarSaveButton,
+  addCardSaveButton,
 } from "../utils/constants.js";
 
 const cardSection = new Section(
@@ -61,13 +66,15 @@ const addCardPopup = new PopupWithForm(
   "#add-card-modal",
   handleAddCardFormSubmit
 );
-addCardPopup.setEventListeners();
-
+const avatarPopup = new PopupWithForm("#avatar-edit-modal", handleAvatarSubmit);
 const editProfilePopup = new PopupWithForm(
   "#profile-edit-modal",
   handleProfileEditSubmit
 );
+
+addCardPopup.setEventListeners();
 editProfilePopup.setEventListeners();
+avatarPopup.setEventListeners();
 
 const imagePreviewPopup = new PopupWithImage("#preview-image-modal"); //should be good
 imagePreviewPopup.setEventListeners();
@@ -119,31 +126,26 @@ api
     console.error("Failed to load user information or cards:", err);
   });
 
-const avatarEditButton = document.querySelector(".profile__edit-avatar-button");
-const avatarEditModal = new PopupWithForm(
-  "#avatar-edit-modal",
-  handleAvatarSubmit
-);
-avatarEditModal.setEventListeners();
-
 // // Open avatar edit popup
+const avatarEditButton = document.querySelector(".profile__edit-avatar-button");
 avatarEditButton.addEventListener("click", () => {
-  avatarEditModal.open();
+  avatarPopup.open();
 });
 
 // // Function to handle avatar update
 function handleAvatarSubmit(inputData) {
-  const saveButton = document.querySelector(".modal__button");
-  renderSaving(true, saveButton);
+  renderSaving(true, avatarSaveButton);
   api
     .updateUserAvatar({ avatar: inputData.avatar })
     .then((userData) => {
       userInfor.updateAvatarImage({ avatar: userData.avatar });
-      avatarEditModal.close();
+      avatarPopup.close();
     })
-    .catch((err) => console.error("Error updating avatar:", err))
+    .catch((err) => {
+      console.error("Error updating avatar:", err);
+    })
     .finally(() => {
-      renderSaving(false, saveButton);
+      renderSaving(false, avatarSaveButton);
     });
 }
 
@@ -242,8 +244,7 @@ function deleteCardModal(cardId, card) {
 //----------------------------------------------------------------------------------------
 
 function handleProfileEditSubmit(inputData) {
-  const saveButton = document.querySelector(".modal__button");
-  renderSaving(true, saveButton);
+  renderSaving(true, profileEditSaveButton);
 
   api
     .updateUserInfo({
@@ -259,13 +260,13 @@ function handleProfileEditSubmit(inputData) {
       console.error("Error updating profile:", err);
     })
     .finally(() => {
-      renderSaving(false, saveButton); // Revert button text to "Save"
+      renderSaving(false, profileEditSaveButton); // Revert button text to "Save"
     });
 }
 
 function handleAddCardFormSubmit(inputValues) {
-  const saveButton = document.querySelector(".modal__button");
-  renderSaving(true, saveButton);
+  renderSaving(true, addCardSaveButton);
+
   api
     .addCard({
       name: inputValues.title,
@@ -277,9 +278,11 @@ function handleAddCardFormSubmit(inputValues) {
       addCardFormElement.reset();
       addFormValidator.resetValidation();
     })
-    .catch((err) => console.error("Error adding card:", err))
+    .catch((err) => {
+      console.error("Error adding card:", err);
+    })
     .finally(() => {
-      renderSaving(false, saveButton);
+      renderSaving(false, addCardSaveButton);
     });
 }
 
