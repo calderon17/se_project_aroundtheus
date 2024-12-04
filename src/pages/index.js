@@ -133,8 +133,8 @@ avatarEditButton.addEventListener("click", () => {
 });
 
 // // Function to handle avatar update
-function handleAvatarSubmit(inputData) {
-  renderSaving(true, avatarSaveButton);
+function handleAvatarSubmit(inputData, saveButton) {
+  renderSaving(true, saveButton);
   api
     .updateUserAvatar({ avatar: inputData.avatar })
     .then((userData) => {
@@ -145,7 +145,7 @@ function handleAvatarSubmit(inputData) {
       console.error("Error updating avatar:", err);
     })
     .finally(() => {
-      renderSaving(false, avatarSaveButton);
+      renderSaving(false, saveButton);
     });
 }
 
@@ -243,8 +243,8 @@ function deleteCardModal(cardId, card) {
 //                                  Event Handlers
 //----------------------------------------------------------------------------------------
 
-function handleProfileEditSubmit(inputData) {
-  renderSaving(true, profileEditSaveButton);
+function handleProfileEditSubmit(inputData, saveButton) {
+  renderSaving(true, saveButton);
 
   api
     .updateUserInfo({
@@ -253,19 +253,18 @@ function handleProfileEditSubmit(inputData) {
     })
     .then(() => {
       userInfor.setUserInfo(inputData);
-      // userInfor.updateAvatarImage(inputData);
       editProfilePopup.close();
     })
     .catch((err) => {
       console.error("Error updating profile:", err);
     })
     .finally(() => {
-      renderSaving(false, profileEditSaveButton); // Revert button text to "Save"
+      renderSaving(false, saveButton); // Revert button text to "Save"
     });
 }
 
-function handleAddCardFormSubmit(inputValues) {
-  renderSaving(true, addCardSaveButton);
+function handleAddCardFormSubmit(inputValues, saveButton) {
+  renderSaving(true, saveButton);
 
   api
     .addCard({
@@ -282,7 +281,7 @@ function handleAddCardFormSubmit(inputValues) {
       console.error("Error adding card:", err);
     })
     .finally(() => {
-      renderSaving(false, addCardSaveButton);
+      renderSaving(false, saveButton);
     });
 }
 
