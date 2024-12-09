@@ -1,116 +1,80 @@
 class Api {
   constructor(options) {
-    this._baseUrl = options.baseUrl;
-    this._headers = options.headers;
+    this.baseUrl = options.baseUrl;
+    this.headers = options.headers;
   }
 
   getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this.baseUrl}/cards`, {
       method: "GET",
-      headers: this._headers,
-    })
-      .then((res) => this._checkResponse(res))
-      .catch((err) => {
-        console.error("Request failed:", err);
-      });
+      headers: this.headers,
+    }).then((res) => this.checkResponse(res));
   }
 
   // Get the current user's info
   getUserInfo() {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this.baseUrl}/users/me`, {
       method: "GET",
-      headers: this._headers,
-    })
-      .then((res) => this._checkResponse(res))
-      .catch((err) => {
-        console.error("Request failed:", err);
-      });
+      headers: this.headers,
+    }).then((res) => this.checkResponse(res));
   }
 
   // Update profile information
   updateUserInfo(data) {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: this.headers,
       body: JSON.stringify(data),
-    })
-      .then((res) => this._checkResponse(res))
-      .catch((err) => {
-        console.error("Request failed:", err);
-        alert("Something went wrong. Please try again later.");
-      });
+    }).then((res) => this.checkResponse(res));
   }
 
   // Update avatar
   updateUserAvatar(data) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
+    return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: this.headers,
       body: JSON.stringify(data),
-    })
-      .then((res) => this._checkResponse(res))
-      .catch((err) => {
-        console.error("Request failed:", err);
-      });
+    }).then((res) => this.checkResponse(res));
   }
 
   addCard(data) {
-    return fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this.baseUrl}/cards`, {
       method: "POST",
-      headers: this._headers,
+      headers: this.headers,
       body: JSON.stringify(data),
-    })
-      .then((res) => this._checkResponse(res))
-      .catch((err) => {
-        console.error("Request failed:", err);
-      });
+    }).then((res) => this.checkResponse(res));
   }
 
   handleDeleteCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+    return fetch(`${this.baseUrl}/cards/${cardId}`, {
       method: "DELETE",
-      headers: this._headers,
-    })
-      .then((res) => this._checkResponse(res))
-      .catch((err) => {
-        console.error("Request failed:", err);
-      });
+      headers: this.headers,
+    }).then((res) => this.checkResponse(res));
   }
 
   // Like a card
   likeCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+    return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
-      headers: this._headers,
-    })
-      .then((res) => this._checkResponse(res))
-      .catch((err) => {
-        console.error("Request failed:", err);
-      });
+      headers: this.headers,
+    }).then((res) => this.checkResponse(res));
   }
 
   // Dislike a card
   dislikeCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+    return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
-      headers: this._headers,
-    })
-      .then((res) => this._checkResponse(res))
-      .catch((err) => {
-        console.error("Request failed:", err);
-      });
+      headers: this.headers,
+    }).then((res) => this.checkResponse(res));
   }
 
   getUserInfoAndCards() {
-    return Promise.all([this.getUserInfo(), this.getInitialCards()])
-      .then(([userInfo, cards]) => ({ userInfo, cards }))
-      .catch((err) => {
-        console.error("Request failed:", err);
-        alert("Unable to load user data or cards. Please try again later.");
-      });
+    return Promise.all([this.getUserInfo(), this.getInitialCards()]).then(
+      ([userInfo, cards]) => ({ userInfo, cards })
+    );
   }
 
-  _checkResponse(res) {
+  checkResponse(res) {
     if (res.ok) {
       return res.json();
     }

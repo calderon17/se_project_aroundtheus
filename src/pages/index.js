@@ -7,7 +7,7 @@ import "./index.css";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/Popupwithform.js";
 import Section from "../components/Section.js";
-import UserInfo from "../components/userInfo.js";
+import UserInfo from "../components/UserInfo.js";
 import PopupConfirmDelete from "../components/PopupConfrimDelete.js";
 import Api from "../components/Api.js";
 
@@ -31,7 +31,7 @@ import {
   // cardTitleInput,
   // cardUrlInput,
   // cardListEl,
-  // cardImageEL,
+  // cardImageEl,
   // Template,
   // modalImageElement,
   // imageModalcaption,
@@ -79,7 +79,7 @@ avatarPopup.setEventListeners();
 const imagePreviewPopup = new PopupWithImage("#preview-image-modal"); //should be good
 imagePreviewPopup.setEventListeners();
 
-const userInfor = new UserInfo({
+const userInfoInstance = new UserInfo({
   profileName: ".profile__title",
   jobElement: ".profile__description",
   avatarImage: ".profile__image",
@@ -115,15 +115,16 @@ const api = new Api({
 api
   .getUserInfoAndCards()
   .then(({ userInfo, cards }) => {
-    userInfor.setUserInfo({
+    userInfoInstance.setUserInfo({
       name: userInfo.name,
       description: userInfo.about,
     });
-    userInfor.updateAvatarImage({ avatar: userInfo.avatar });
+    userInfoInstance.updateAvatarImage({ avatar: userInfo.avatar });
     cardSection.renderItems(cards);
   })
   .catch((err) => {
     console.error("Failed to load user information or cards:", err);
+    alert("Unable to load user data or cards. Please try again later.");
   });
 
 // // Open avatar edit popup
@@ -138,11 +139,14 @@ function handleAvatarSubmit(inputData, saveButton) {
   api
     .updateUserAvatar({ avatar: inputData.avatar })
     .then((userData) => {
-      userInfor.updateAvatarImage({ avatar: userData.avatar });
+      userInfoInstance.updateAvatarImage({ avatar: userData.avatar });
       avatarPopup.close();
+      avatarFormValidator.resetValidation();
+      avatarFormElement.reset();
     })
     .catch((err) => {
       console.error("Error updating avatar:", err);
+      alert("Failed to change avatar image. Please try again.");
     })
     .finally(() => {
       renderSaving(false, saveButton);
@@ -194,9 +198,9 @@ function createCard(item) {
 // }
 
 function handleCardLike(card) {
-  if (!card._isLiked) {
+  if (!card.isLiked) {
     api
-      .likeCard(card._id)
+      .likeCard(card.id)
       .then((data) => {
         console.log(data);
         card.updateLike(true);
@@ -204,9 +208,10 @@ function handleCardLike(card) {
       .catch((err) => console.error("Error adding like to card:", err));
   } else {
     api
-      .dislikeCard(card._id)
+      .dislikeCard(card.id)
       .then((data) => {
         card.updateLike(false);
+        console.log(data);
       })
       .catch((err) => console.error("Error removing like from card:", err));
   }
@@ -230,7 +235,7 @@ function deleteCardModal(cardId, card) {
     api
       .handleDeleteCard(cardId)
       .then(() => {
-        card._handleDeleteCard();
+        card.handleDeleteCard();
         confirmDelete.close();
       })
       .catch((err) => console.error("Error deleting card:", err));
@@ -252,14 +257,16 @@ function handleProfileEditSubmit(inputData, saveButton) {
       about: inputData.description,
     })
     .then(() => {
-      userInfor.setUserInfo(inputData);
+      userInfoInstance.setUserInfo(inputData);
       editProfilePopup.close();
+      profileEditForm.reset();
     })
     .catch((err) => {
       console.error("Error updating profile:", err);
+      alert("Failed to update profile. Please try again.");
     })
     .finally(() => {
-      renderSaving(false, saveButton); // Revert button text to "Save"
+      renderSaving(false, saveButton);
     });
 }
 
@@ -279,6 +286,7 @@ function handleAddCardFormSubmit(inputValues, saveButton) {
     })
     .catch((err) => {
       console.error("Error adding card:", err);
+      alert("Failed to add the card. Please try again.");
     })
     .finally(() => {
       renderSaving(false, saveButton);
@@ -290,7 +298,7 @@ function handleAddCardFormSubmit(inputValues, saveButton) {
 //----------------------------------------------------------------------------------------
 
 profileEditButton.addEventListener("click", () => {
-  const currentUserInfo = userInfor.getUserInfo();
+  const currentUserInfo = userInfoInstance.getUserInfo();
   profileTitleInput.value = currentUserInfo.title;
   profileDescriptionInput.value = currentUserInfo.description;
   editProfilePopup.open();

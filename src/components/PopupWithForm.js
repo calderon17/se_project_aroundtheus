@@ -27,10 +27,11 @@ class PopupWithForm extends Popup {
     });
   }
 
-  close() {
-    super.close();
-    this._popupForm.reset(); // Reset the form fields when closing
-  }
+  // close() {
+  //   this._popupForm.reset(); // Reset the form fields when closing
+  // super.close();
+
+  // }
 
   // setEventListeners() {
   //   super.setEventListeners();

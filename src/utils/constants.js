@@ -21,17 +21,17 @@ const profileEditForm = profileEditModal.querySelector("#modal-form");
 const avatarFormElement = avatarEditModal.querySelector("#modal-form");
 const addCardFormElement = addCardModal.querySelector("#modal-form");
 
-//buttons
-const profileEditSaveButton = profileEditForm.querySelector(".modal__button");
-const avatarSaveButton = avatarFormElement.querySelector(".modal__button");
-const addCardSaveButton = addCardFormElement.querySelector(".modal__button");
+// //buttons
+// const profileEditSaveButton = profileEditForm.querySelector(".modal__button");
+// const avatarSaveButton = avatarFormElement.querySelector(".modal__button");
+// const addCardSaveButton = addCardFormElement.querySelector(".modal__button");
 
 //cards
 const cardTitleInput = addCardFormElement.querySelector("#card-title-input");
 const cardUrlInput = addCardFormElement.querySelector("#card-url-input");
 const cardListEl = document.querySelector(".cards__list");
-const cardImageEL = document.querySelector(".cards__list");
-const Template =
+const cardImageEl = document.querySelector(".cards__list");
+const template =
   document.querySelector("#card-template").content.firstElementChild;
 
 // image preview modal
@@ -57,15 +57,15 @@ export {
   cardTitleInput,
   cardUrlInput,
   cardListEl,
-  cardImageEL,
-  Template,
+  cardImageEl,
+  template,
   modalImageElement,
   imageModalcaption,
   preImgModalCloseButton,
   avatarFormElement,
-  profileEditSaveButton,
-  avatarSaveButton,
-  addCardSaveButton,
+  // profileEditSaveButton,
+  // avatarSaveButton,
+  // addCardSaveButton,
 };
 
 export const cardSelector = "#card-template";
