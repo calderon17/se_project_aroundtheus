@@ -45,9 +45,6 @@ import {
   cardSelector,
   settings,
   avatarFormElement,
-  profileEditSaveButton,
-  avatarSaveButton,
-  addCardSaveButton,
 } from "../utils/constants.js";
 
 const cardSection = new Section(

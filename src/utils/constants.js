@@ -21,11 +21,6 @@ const profileEditForm = profileEditModal.querySelector("#modal-form");
 const avatarFormElement = avatarEditModal.querySelector("#modal-form");
 const addCardFormElement = addCardModal.querySelector("#modal-form");
 
-// //buttons
-// const profileEditSaveButton = profileEditForm.querySelector(".modal__button");
-// const avatarSaveButton = avatarFormElement.querySelector(".modal__button");
-// const addCardSaveButton = addCardFormElement.querySelector(".modal__button");
-
 //cards
 const cardTitleInput = addCardFormElement.querySelector("#card-title-input");
 const cardUrlInput = addCardFormElement.querySelector("#card-url-input");
@@ -63,11 +58,9 @@ export {
   imageModalcaption,
   preImgModalCloseButton,
   avatarFormElement,
-  // profileEditSaveButton,
-  // avatarSaveButton,
-  // addCardSaveButton,
 };
 
+// export const cardSelector = "#card-teamplte";
 export const cardSelector = "#card-template";
 
 export const settings = {
