@@ -20,17 +20,10 @@ export default class Card {
 
   //------------------------------------------------------------
   _setEventListeners() {
-    // this._cardElement
-    //   .querySelector(".card__like-button")
     this._likeButton.addEventListener("click", this._handleLikeIcon);
-
-    // this._cardElement
-    //   .querySelector(".card__remove-button")
 
     this._deleteCard.addEventListener("click", this._handleDeleteCard);
 
-    // this._cardElement;
-    // .querySelector(".card__image")
     this._cardImage.addEventListener("click", () => {
       this._handleImagePreview(this);
     });
@@ -43,10 +36,6 @@ export default class Card {
   };
   //------------------------------------------------------------
   _handleLikeIcon = () => {
-    // this._cardElement
-    //   .querySelector(".card__like-button")
-    //   .classList.toggle("card__like-button_active");
-    // --- OG code--
     this._likeButton.classList.toggle("card__like-button_active");
   };
 
